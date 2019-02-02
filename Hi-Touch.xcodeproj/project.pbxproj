@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		669049336416252694F28A9C /* Pods_Hi_Touch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC16082C9764466BFC0A5C35 /* Pods_Hi_Touch.framework */; };
+		9A0B61632205939C006A395A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A0B61622205939C006A395A /* GoogleService-Info.plist */; };
+		9A6CEAB82205CF2900FD37FB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6CEAB72205CF2900FD37FB /* MainViewController.swift */; };
 		9A73D3C02205685E00D4A918 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A73D3BF2205685E00D4A918 /* AppDelegate.swift */; };
-		9A73D3C22205685E00D4A918 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A73D3C12205685E00D4A918 /* ViewController.swift */; };
 		9A73D3C52205685E00D4A918 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A73D3C32205685E00D4A918 /* Main.storyboard */; };
 		9A73D3C72205685E00D4A918 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A73D3C62205685E00D4A918 /* Assets.xcassets */; };
 		9A73D3CA2205685E00D4A918 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A73D3C82205685E00D4A918 /* LaunchScreen.storyboard */; };
@@ -20,9 +21,10 @@
 
 /* Begin PBXFileReference section */
 		2D02217ABFC872A0FBD96656 /* Pods-Hi-Touch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hi-Touch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hi-Touch/Pods-Hi-Touch.debug.xcconfig"; sourceTree = "<group>"; };
+		9A0B61622205939C006A395A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9A6CEAB72205CF2900FD37FB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9A73D3BC2205685E00D4A918 /* Hi-Touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hi-Touch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A73D3BF2205685E00D4A918 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9A73D3C12205685E00D4A918 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9A73D3C42205685E00D4A918 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A73D3C62205685E00D4A918 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A73D3C92205685E00D4A918 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				9A73D3C62205685E00D4A918 /* Assets.xcassets */,
 				9A73D3C82205685E00D4A918 /* LaunchScreen.storyboard */,
 				9A73D3CB2205685E00D4A918 /* Info.plist */,
+				9A0B61622205939C006A395A /* GoogleService-Info.plist */,
 			);
 			path = "Hi-Touch";
 			sourceTree = "<group>";
@@ -97,10 +100,10 @@
 		9AB5637B2205803F00BAA0B2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9A73D3C12205685E00D4A918 /* ViewController.swift */,
 				9AB5637C2205807C00BAA0B2 /* WelcomeViewController.swift */,
 				9AB5637E2205809900BAA0B2 /* RegisterViewController.swift */,
 				9AB56380220580A700BAA0B2 /* LoginViewController.swift */,
+				9A6CEAB72205CF2900FD37FB /* MainViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A73D3CA2205685E00D4A918 /* LaunchScreen.storyboard in Resources */,
+				9A0B61632205939C006A395A /* GoogleService-Info.plist in Resources */,
 				9A73D3C72205685E00D4A918 /* Assets.xcassets in Resources */,
 				9A73D3C52205685E00D4A918 /* Main.storyboard in Resources */,
 			);
@@ -233,10 +237,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AB5637D2205807C00BAA0B2 /* WelcomeViewController.swift in Sources */,
-				9A73D3C22205685E00D4A918 /* ViewController.swift in Sources */,
 				9A73D3C02205685E00D4A918 /* AppDelegate.swift in Sources */,
 				9AB56381220580A700BAA0B2 /* LoginViewController.swift in Sources */,
 				9AB5637F2205809900BAA0B2 /* RegisterViewController.swift in Sources */,
+				9A6CEAB82205CF2900FD37FB /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
