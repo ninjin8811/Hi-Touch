@@ -203,12 +203,60 @@
                     <connections>
                         <outlet property="emailTextfield" destination="bmk-q7-n5c" id="nsC-1f-IWB"/>
                         <outlet property="passwordTextfield" destination="iwJ-fc-QNn" id="HcC-fs-VUQ"/>
-                        <segue destination="PTv-YE-gNy" kind="presentation" identifier="goToMain" id="TVR-eD-6ba"/>
+                        <segue destination="68l-3o-vcy" kind="show" identifier="goToVerify" id="j5u-Jh-Cph"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mMe-hF-ZiB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="914" y="-899"/>
+            <point key="canvasLocation" x="860" y="-1075"/>
+        </scene>
+        <!--Verify View Controller-->
+        <scene sceneID="8Mt-Bi-ogu">
+            <objects>
+                <viewController id="68l-3o-vcy" userLabel="Verify View Controller" customClass="VerifyViewController" customModule="Hi_Touch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sDT-7i-Uur">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljZ-so-96A">
+                                <rect key="frame" x="70" y="308" width="234" height="50"/>
+                                <color key="backgroundColor" red="0.2741835192" green="0.84999603430000004" blue="0.61748396750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="OP9-g6-4H3"/>
+                                </constraints>
+                                <color key="tintColor" red="0.2741835192" green="0.84999603430000004" blue="0.61748396750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="認証完了">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="verifyButtonPressed:" destination="68l-3o-vcy" eventType="touchUpInside" id="STd-Fu-scE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K0d-AM-jt6">
+                                <rect key="frame" x="125.5" y="378" width="123" height="30"/>
+                                <state key="normal" title="確認メールを送る"/>
+                                <connections>
+                                    <action selector="sendButtonPressed:" destination="68l-3o-vcy" eventType="touchUpInside" id="fQr-o9-MBV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ljZ-so-96A" firstAttribute="centerY" secondItem="sDT-7i-Uur" secondAttribute="centerY" id="HUf-vp-jKc"/>
+                            <constraint firstItem="ljZ-so-96A" firstAttribute="centerX" secondItem="sDT-7i-Uur" secondAttribute="centerX" id="gN1-Cg-09i"/>
+                            <constraint firstItem="K0d-AM-jt6" firstAttribute="top" secondItem="ljZ-so-96A" secondAttribute="bottom" constant="20" id="hnw-uY-Ujn"/>
+                            <constraint firstItem="ljZ-so-96A" firstAttribute="leading" secondItem="FVZ-IO-8Kh" secondAttribute="leading" constant="70" id="msI-TN-mXX"/>
+                            <constraint firstItem="K0d-AM-jt6" firstAttribute="centerX" secondItem="sDT-7i-Uur" secondAttribute="centerX" id="plL-Oq-p5d"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FVZ-IO-8Kh"/>
+                    </view>
+                    <connections>
+                        <segue destination="PTv-YE-gNy" kind="presentation" identifier="goToMain" id="upH-rB-39s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hta-k7-dcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1852" y="-1691"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="Quf-uM-jep">
@@ -226,7 +274,7 @@
             </objects>
             <point key="canvasLocation" x="3149" y="-277"/>
         </scene>
-        <!--Item 1-->
+        <!--View Controller-->
         <scene sceneID="zPO-V1-ge1">
             <objects>
                 <viewController id="9lw-aG-7HU" sceneMemberID="viewController">
@@ -236,7 +284,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="Fm7-Yr-wAG"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="hBD-Eu-Dcv"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="hBD-Eu-Dcv"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6t-A5-7br" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -262,6 +310,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ptN-n7-9AX"/>
+        <segue reference="upH-rB-39s"/>
     </inferredMetricsTieBreakers>
 </document>
