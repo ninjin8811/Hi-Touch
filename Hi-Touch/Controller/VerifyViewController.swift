@@ -17,6 +17,7 @@ class VerifyViewController: UIViewController {
     }
     
     @IBAction func verifyButtonPressed(_ sender: UIButton) {
+        
 //        SVProgressHUD.show()
 //
 //        if Auth.auth().currentUser?.isEmailVerified == true{
@@ -38,6 +39,7 @@ class VerifyViewController: UIViewController {
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
+        
         Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
             if error != nil{
                 print("Could not send Email")

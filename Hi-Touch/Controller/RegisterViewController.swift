@@ -20,10 +20,12 @@ class RegisterViewController: UIViewController {
     }
 
     @IBAction func RegisterButtonPressed(_ sender: UIButton) {
+        
         SVProgressHUD.show()
         
         Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (result, error) in
             if error != nil{
+                
                 SVProgressHUD.dismiss()
                 
                 let alert = UIAlertController(title: "エラー", message: "メールアドレスかパスワードが有効ではありません", preferredStyle: .alert)
@@ -35,6 +37,7 @@ class RegisterViewController: UIViewController {
                 
                 print("Could not sign in: \(String(describing: error))")
             }else{
+                
                 Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
                     if error != nil{
                         print("Could not send Email!")
