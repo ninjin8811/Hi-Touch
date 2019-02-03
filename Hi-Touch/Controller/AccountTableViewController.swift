@@ -13,13 +13,13 @@ import RealmSwift
 class AccountTableViewController: UITableViewController {
     
     let realm = try! Realm()
-    let dataRef = Database.database().reference()
+    let dataRef = Database.database().reference().child("users")
     var profileRealm = Profile()
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet var accountTableView: UITableView!
     
-    let firstArray = [ProfileCell]()
+    let profileData = ProfileCell()
     let secondArray = ["予定", "フレンド", "お気に入り", "アカウント設定"]
     let sectionTitle = ["プロフィール", "アカウント情報"]
     
@@ -38,7 +38,9 @@ class AccountTableViewController: UITableViewController {
             print("データない！")
         }
         
-        isExistAutoID()
+//        isExistAutoID()
+        
+        loadProfile()
         
         profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(AccountTableViewController.imageViewTapped(_:))))
         
@@ -85,6 +87,10 @@ class AccountTableViewController: UITableViewController {
             
             let profileCell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileCell
             
+            profileCell.nameLabel.text = profileRealm.name
+            profileCell.ageLabel.text = String(profileRealm.age)
+            profileCell.regionLabel.text = profileRealm.region
+            profileCell.teamLabel.text = profileRealm.team
             
             return profileCell
             
@@ -106,27 +112,51 @@ class AccountTableViewController: UITableViewController {
 
     //MARK: - Check Exist Method
     
-    func isExistAutoID(){
-        
-        if profileRealm.autoID != nil{
-            
-            print("オートIDありました！")
-            loadProfile()
-            
-        }else{
-            
-            print("オートIDないです作ります！")
-            dataRef.child("users").childByAutoId()
-
-        }
-        
-        print(profileRealm)
-    }
+//    func isExistAutoID(){
+//
+//        if profileRealm.autoID != nil{
+//
+//            print("オートIDありました！")
+//            loadProfile()
+//
+//        }else{
+//
+//            print("オートIDないです作ります！")
+//            dataRef.child("users").childByAutoId()
+//            try! realm.write {
+//                profileRealm.autoID = dataRef.child("users").childByAutoId()
+//            }
+//
+//        }
+//
+//        print(profileRealm)
+//    }
 
     
     //MARK: - Load Data Method
     
     func loadProfile(){
+        
+        if let uid = profileRealm.userID {
+            
+            dataRef.child(uid).observe(DataEventType.value, with: { (snapshot) in           //ここはいらないかも
+                
+                let snapshotValue = snapshot.value as! [String: AnyObject]
+
+                
+                
+            })
+        }
+        
+        if profileRealm.userID != nil{
+            
+        }else{
+            guard let userID = Auth.auth().currentUser?.uid else {
+                fatalError()
+            }
+            
+            profileRealm.userID = userID
+        }
         
         
     }

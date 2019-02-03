@@ -11,9 +11,9 @@ import RealmSwift
 
 class Profile: Object{
     
-    @objc dynamic var autoID: String?
-    @objc dynamic var firstName: String = "史也"
-    @objc dynamic var lastName: String = "吉野"
+    @objc dynamic var userID: String?
+    @objc dynamic var name: String = "吉野 史也"
     @objc dynamic var team: String = "Liverpool"
     @objc dynamic var age: Int = 22
+    @objc dynamic var region: String = "Osaka"
 }
