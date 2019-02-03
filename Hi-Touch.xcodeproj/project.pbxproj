@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		669049336416252694F28A9C /* Pods_Hi_Touch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC16082C9764466BFC0A5C35 /* Pods_Hi_Touch.framework */; };
 		9A0B61632205939C006A395A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A0B61622205939C006A395A /* GoogleService-Info.plist */; };
+		9A5372FC2206E8BB00C98EC5 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5372FB2206E8BB00C98EC5 /* ProfileCell.xib */; };
+		9A5373002206F30B00C98EC5 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5372FF2206F30B00C98EC5 /* ProfileCell.swift */; };
 		9A6CEABC2206A29900FD37FB /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6CEABB2206A29900FD37FB /* VerifyViewController.swift */; };
 		9A6CEAC02206B59E00FD37FB /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6CEABF2206B59E00FD37FB /* AccountTableViewController.swift */; };
 		9A73D3C02205685E00D4A918 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A73D3BF2205685E00D4A918 /* AppDelegate.swift */; };
@@ -23,6 +25,8 @@
 /* Begin PBXFileReference section */
 		2D02217ABFC872A0FBD96656 /* Pods-Hi-Touch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hi-Touch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hi-Touch/Pods-Hi-Touch.debug.xcconfig"; sourceTree = "<group>"; };
 		9A0B61622205939C006A395A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9A5372FB2206E8BB00C98EC5 /* ProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
+		9A5372FF2206F30B00C98EC5 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		9A6CEABB2206A29900FD37FB /* VerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
 		9A6CEABF2206B59E00FD37FB /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		9A73D3BC2205685E00D4A918 /* Hi-Touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hi-Touch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +71,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9A5372FA2206E85100C98EC5 /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9A5372FB2206E8BB00C98EC5 /* ProfileCell.xib */,
+				9A5372FF2206F30B00C98EC5 /* ProfileCell.swift */,
+			);
+			path = "Custom Cell";
+			sourceTree = "<group>";
+		};
 		9A73D3B32205685E00D4A918 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +101,7 @@
 		9A73D3BE2205685E00D4A918 /* Hi-Touch */ = {
 			isa = PBXGroup;
 			children = (
+				9A5372FA2206E85100C98EC5 /* Custom Cell */,
 				9A73D3BF2205685E00D4A918 /* AppDelegate.swift */,
 				9AB5637B2205803F00BAA0B2 /* Controller */,
 				9A73D3C32205685E00D4A918 /* Main.storyboard */,
@@ -176,6 +190,7 @@
 				9A0B61632205939C006A395A /* GoogleService-Info.plist in Resources */,
 				9A73D3C72205685E00D4A918 /* Assets.xcassets in Resources */,
 				9A73D3C52205685E00D4A918 /* Main.storyboard in Resources */,
+				9A5372FC2206E8BB00C98EC5 /* ProfileCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +260,7 @@
 				9AB56381220580A700BAA0B2 /* LoginViewController.swift in Sources */,
 				9A6CEABC2206A29900FD37FB /* VerifyViewController.swift in Sources */,
 				9AB5637F2205809900BAA0B2 /* RegisterViewController.swift in Sources */,
+				9A5373002206F30B00C98EC5 /* ProfileCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
