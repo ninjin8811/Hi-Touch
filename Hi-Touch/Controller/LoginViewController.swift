@@ -38,8 +38,9 @@ class LoginViewController: UIViewController {
                 print("Could not create a user: \(String(describing: error))")
             }else{
                 SVProgressHUD.dismiss()
-                self.performSegue(withIdentifier: "goToMain", sender: self)
+                
                 self.dismiss(animated: true, completion: nil)
+                self.performSegue(withIdentifier: "goToMain", sender: self)
             }
         }
         

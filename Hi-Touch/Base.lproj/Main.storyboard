@@ -219,7 +219,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljZ-so-96A">
-                                <rect key="frame" x="70" y="308" width="234" height="50"/>
+                                <rect key="frame" x="70" y="308.5" width="235" height="50"/>
                                 <color key="backgroundColor" red="0.2741835192" green="0.84999603430000004" blue="0.61748396750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="OP9-g6-4H3"/>
@@ -233,7 +233,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K0d-AM-jt6">
-                                <rect key="frame" x="125.5" y="378" width="123" height="30"/>
+                                <rect key="frame" x="126" y="378.5" width="123" height="30"/>
                                 <state key="normal" title="確認メールを送る"/>
                                 <connections>
                                     <action selector="sendButtonPressed:" destination="68l-3o-vcy" eventType="touchUpInside" id="fQr-o9-MBV"/>
@@ -274,6 +274,62 @@
             </objects>
             <point key="canvasLocation" x="3149" y="-277"/>
         </scene>
+        <!--アカウント-->
+        <scene sceneID="FMp-rE-40N">
+            <objects>
+                <tableViewController id="Bbz-bt-58T" customClass="AccountTableViewController" customModule="Hi_Touch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="c3l-v5-LoE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <imageView key="tableHeaderView" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Ywx-MR-vRz" userLabel="Profile Image">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <gestureRecognizers/>
+                        </imageView>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Bkn-U9-nJh">
+                                <rect key="frame" x="0.0" y="228" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bkn-U9-nJh" id="bX4-YA-xlu">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Bbz-bt-58T" id="BVm-je-5GS"/>
+                            <outlet property="delegate" destination="Bbz-bt-58T" id="ndA-yI-x7N"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="アカウント" id="TRw-zN-NFE">
+                        <barButtonItem key="rightBarButtonItem" title="ログアウト" id="eIV-Ce-MWh"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="profileImageView" destination="Ywx-MR-vRz" id="dio-1E-766"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bh0-Hk-DjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3040.8000000000002" y="477.21139430284859"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="hPs-tc-xNI">
+            <objects>
+                <navigationController id="IMU-qr-m7d" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="b7z-L1-p4D"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AKc-V6-ygF">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Bbz-bt-58T" kind="relationship" relationship="rootViewController" id="sKt-KT-IxJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eGS-QW-7LZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2148" y="478"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="zPO-V1-ge1">
             <objects>
@@ -302,6 +358,7 @@
                     <connections>
                         <segue destination="9lw-aG-7HU" kind="relationship" relationship="viewControllers" id="gIg-KS-KHf"/>
                         <segue destination="lQJ-k7-ml5" kind="relationship" relationship="viewControllers" id="40b-hf-t4f"/>
+                        <segue destination="IMU-qr-m7d" kind="relationship" relationship="viewControllers" id="jQh-bd-nDx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="inZ-RG-qkY" userLabel="First Responder" sceneMemberID="firstResponder"/>
