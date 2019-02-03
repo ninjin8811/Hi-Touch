@@ -8,27 +8,49 @@
 
 import UIKit
 import Firebase
+import RealmSwift
 
 class AccountTableViewController: UITableViewController {
     
+    let realm = try! Realm()
+    let dataRef = Database.database().reference()
+    var profileRealm = Profile()
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet var accountTableView: UITableView!
-    
     
     let firstArray = [ProfileCell]()
     let secondArray = ["予定", "フレンド", "お気に入り", "アカウント設定"]
     let sectionTitle = ["プロフィール", "アカウント情報"]
     
+    
+    
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let data = realm.objects(Profile.self).first{
+            profileRealm = data
+        }else{
+            print("データない！")
+        }
         
+        isExistAutoID()
         
         profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(AccountTableViewController.imageViewTapped(_:))))
         
         accountTableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "profileCell")
     }
+    
+    
+    
+    
+    
+    
+    
 
 
     // MARK: - Table view data source
@@ -75,7 +97,56 @@ class AccountTableViewController: UITableViewController {
         }
     }
     
+    
+    
+    
+    
+    
+    
+
+    //MARK: - Check Exist Method
+    
+    func isExistAutoID(){
+        
+        if profileRealm.autoID != nil{
+            
+            print("オートIDありました！")
+            loadProfile()
+            
+        }else{
+            
+            print("オートIDないです作ります！")
+            dataRef.child("users").childByAutoId()
+
+        }
+        
+        print(profileRealm)
+    }
+
+    
+    //MARK: - Load Data Method
+    
+    func loadProfile(){
+        
+        
+    }
+    
+    //MARK: - Initialize Firebase Database
+    
+    func initProfileOnFirebase(){
+        
+
+        
+        
+    }
+    
 }
+
+
+
+
+
+
 
 
 
