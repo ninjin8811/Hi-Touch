@@ -303,7 +303,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="アカウント" id="TRw-zN-NFE">
-                        <barButtonItem key="rightBarButtonItem" title="ログアウト" id="eIV-Ce-MWh"/>
+                        <barButtonItem key="rightBarButtonItem" title="セーブ" id="eIV-Ce-MWh">
+                            <connections>
+                                <action selector="logoutButtonPressed:" destination="Bbz-bt-58T" id="QT1-Sz-AzT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="accountTableView" destination="c3l-v5-LoE" id="FVy-8X-4PV"/>

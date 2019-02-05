@@ -8,38 +8,31 @@
 
 import UIKit
 import Firebase
-import RealmSwift
+//import RealmSwift
 
 class AccountTableViewController: UITableViewController {
     
-    let realm = try! Realm()
-    let dataRef = Database.database().reference().child("users")
-    var profileRealm = Profile()
+    var dataRef = Database.database().reference()
+//    let realm = try! Realm()
+//    var profileRealm = Profile()
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet var accountTableView: UITableView!
     
-    let profileData = ProfileCell()
+    let profileData = Profile()
     let secondArray = ["予定", "フレンド", "お気に入り", "アカウント設定"]
     let sectionTitle = ["プロフィール", "アカウント情報"]
-    
-    
-    
-    
-    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let data = realm.objects(Profile.self).first{
-            profileRealm = data
-        }else{
-            print("データない！")
-        }
-        
-//        isExistAutoID()
-        
+//        if let data = realm.objects(Profile.self).first{
+//            profileRealm = data
+//        }else{
+//            print("データない！")
+//        }
+//
         loadProfile()
         
         profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(AccountTableViewController.imageViewTapped(_:))))
@@ -87,10 +80,15 @@ class AccountTableViewController: UITableViewController {
             
             let profileCell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileCell
             
-            profileCell.nameLabel.text = profileRealm.name
-            profileCell.ageLabel.text = String(profileRealm.age)
-            profileCell.regionLabel.text = profileRealm.region
-            profileCell.teamLabel.text = profileRealm.team
+            profileCell.nameLabel.text = profileData.name
+            profileCell.ageLabel.text = profileData.age
+            profileCell.regionLabel.text = profileData.region
+            profileCell.teamLabel.text = profileData.team
+
+//            profileCell.nameLabel.text = profileRealm.name
+//            profileCell.ageLabel.text = String(profileRealm.age)
+//            profileCell.regionLabel.text = profileRealm.region
+//            profileCell.teamLabel.text = profileRealm.team
             
             return profileCell
             
@@ -108,56 +106,68 @@ class AccountTableViewController: UITableViewController {
     
     
     
+    //MARK: - Data Manipulate Methods
     
-
-    //MARK: - Check Exist Method
-    
-//    func isExistAutoID(){
-//
-//        if profileRealm.autoID != nil{
-//
-//            print("オートIDありました！")
-//            loadProfile()
-//
-//        }else{
-//
-//            print("オートIDないです作ります！")
-//            dataRef.child("users").childByAutoId()
-//            try! realm.write {
-//                profileRealm.autoID = dataRef.child("users").childByAutoId()
-//            }
-//
-//        }
-//
-//        print(profileRealm)
-//    }
-
-    
-    //MARK: - Load Data Method
+    func saveData(){
+        
+        let profileDictionary = ["name": profileData.name, "age": profileData.age, "team": profileData.team, "region": profileData.region]
+        
+        dataRef.setValue(profileDictionary) { (error, reference) in
+            
+            if error != nil{
+                print("セーブできませんでした！")
+            }else{
+                print("セーブできました！")
+            }
+        }
+    }
     
     func loadProfile(){
         
-        if let uid = profileRealm.userID {
+        guard let userID = Auth.auth().currentUser?.uid else{
+            fatalError()
+        }
+        
+        dataRef = dataRef.child("users").child(userID)
+        dataRef.keepSynced(true)
+        
+        dataRef.observe(DataEventType.value) { (snapshot) in
             
-            dataRef.child(uid).observe(DataEventType.value, with: { (snapshot) in           //ここはいらないかも
+            if let value = snapshot.value as? NSDictionary{
                 
-                let snapshotValue = snapshot.value as! [String: AnyObject]
+                print("ロード成功！")
+                self.profileData.name = value["name"] as! String
+                self.profileData.age = value["age"] as! String
+                self.profileData.team = value["team"] as! String
+                self.profileData.region = value["region"] as! String
 
-                
-                
-            })
-        }
-        
-        if profileRealm.userID != nil{
-            
-        }else{
-            guard let userID = Auth.auth().currentUser?.uid else {
-                fatalError()
+            }else{
+                print("データなかったです！")
             }
-            
-            profileRealm.userID = userID
         }
         
+        
+//        if let uid = profileRealm.userID {
+//
+//            dataRef.child(uid).observe(DataEventType.value, with: { (snapshot) in           //ここはいらないかも
+//
+//                let snapshotValue = snapshot.value as! [String: AnyObject]
+//
+//            })
+//        }else{
+//
+//        }
+//
+//        if profileRealm.userID != nil{
+//
+//        }else{
+//            guard let userID = Auth.auth().currentUser?.uid else {
+//                fatalError()
+//            }
+//
+//            profileRealm.userID = userID
+//        }
+//
         
     }
     
@@ -168,6 +178,9 @@ class AccountTableViewController: UITableViewController {
 
         
         
+    }
+    @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
+        saveData()
     }
     
 }
