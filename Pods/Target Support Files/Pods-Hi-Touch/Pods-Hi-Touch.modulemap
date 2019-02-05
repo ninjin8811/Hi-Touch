@@ -1,0 +1,6 @@
+framework module Pods_Hi_Touch {
+  umbrella header "Pods-Hi-Touch-umbrella.h"
+
+  export *
+  module * { export * }
+}
