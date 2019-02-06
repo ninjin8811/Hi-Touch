@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -312,11 +313,70 @@
                     <connections>
                         <outlet property="accountTableView" destination="c3l-v5-LoE" id="FVy-8X-4PV"/>
                         <outlet property="profileImageView" destination="Ywx-MR-vRz" id="dio-1E-766"/>
+                        <segue destination="obF-zk-ASF" kind="presentation" id="qcF-SB-iAX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bh0-Hk-DjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2933" y="478"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="FJj-vc-7sf">
+            <objects>
+                <viewController id="obF-zk-ASF" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EXx-xc-yEe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YkZ-wO-VIM">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="プロフィール" id="fLI-bt-Z9n">
+                                        <barButtonItem key="leftBarButtonItem" title="キャンセル" id="OOq-CD-B1l"/>
+                                        <barButtonItem key="rightBarButtonItem" title="保存" id="Pyq-BV-zo3"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ahu-mk-RTq" userLabel="Top View">
+                                <rect key="frame" x="0.0" y="44" width="375" height="200"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qtv-x2-5xU">
+                                        <rect key="frame" x="122" y="35" width="130" height="130"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Qtv-x2-5xU" secondAttribute="height" multiplier="1:1" id="ZoU-2s-Qi4"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEM-3N-cp4">
+                                        <rect key="frame" x="172" y="170" width="31" height="30"/>
+                                        <state key="normal" title="編集"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="YEM-3N-cp4" firstAttribute="top" secondItem="Qtv-x2-5xU" secondAttribute="bottom" constant="5" id="5uk-hy-e3f"/>
+                                    <constraint firstAttribute="width" secondItem="Ahu-mk-RTq" secondAttribute="height" multiplier="15:8" id="9Ew-Qc-RAs"/>
+                                    <constraint firstItem="Qtv-x2-5xU" firstAttribute="centerY" secondItem="Ahu-mk-RTq" secondAttribute="centerY" id="B3z-Hu-05O"/>
+                                    <constraint firstItem="Qtv-x2-5xU" firstAttribute="top" secondItem="Ahu-mk-RTq" secondAttribute="top" constant="35" id="XbL-lx-hGE"/>
+                                    <constraint firstItem="YEM-3N-cp4" firstAttribute="centerX" secondItem="Ahu-mk-RTq" secondAttribute="centerX" id="ZuL-pH-inS"/>
+                                    <constraint firstItem="Qtv-x2-5xU" firstAttribute="centerX" secondItem="Ahu-mk-RTq" secondAttribute="centerX" id="e04-3z-UV7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YkZ-wO-VIM" firstAttribute="trailing" secondItem="Ztj-pr-aYQ" secondAttribute="trailing" id="26r-KU-5qn"/>
+                            <constraint firstItem="Ahu-mk-RTq" firstAttribute="leading" secondItem="Ztj-pr-aYQ" secondAttribute="leading" id="80z-0o-W3m"/>
+                            <constraint firstItem="Ahu-mk-RTq" firstAttribute="top" secondItem="YkZ-wO-VIM" secondAttribute="bottom" id="Ajs-lh-bOU"/>
+                            <constraint firstItem="YkZ-wO-VIM" firstAttribute="leading" secondItem="Ztj-pr-aYQ" secondAttribute="leading" id="CI0-ey-aUX"/>
+                            <constraint firstItem="YkZ-wO-VIM" firstAttribute="top" secondItem="EXx-xc-yEe" secondAttribute="top" id="CQ4-vI-leK"/>
+                            <constraint firstItem="Ztj-pr-aYQ" firstAttribute="trailing" secondItem="Ahu-mk-RTq" secondAttribute="trailing" id="c2C-Gq-dX3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ztj-pr-aYQ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mvH-Qk-gow" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4072" y="457"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hPs-tc-xNI">
