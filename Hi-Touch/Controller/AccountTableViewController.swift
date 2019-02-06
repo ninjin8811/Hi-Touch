@@ -48,7 +48,7 @@ class AccountTableViewController: UITableViewController {
     
 
 
-    // MARK: - Table view data source
+    // MARK: - Table view delegate
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -98,6 +98,31 @@ class AccountTableViewController: UITableViewController {
             cell.textLabel?.text = secondArray[indexPath.row]
             
             return cell
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath == [0, 0]{
+            performSegue(withIdentifier: "goToProfileSetting", sender: self)
+        }
+        
+        print("選択されたインデックスパス:\(indexPath)")
+        print("indexpath.row:\(indexPath.row)")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let segueIdentifier = segue.identifier else {
+            return
+        }
+        
+        if segueIdentifier == "goToProfileSetting"{
+            let destinationVC = segue.destination as! ProfileViewController
+            
+            destinationVC.profileData = profileData
         }
     }
     

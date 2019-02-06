@@ -13,17 +13,18 @@ import SVProgressHUD
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var profileImageView: UIImageView!
-    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var teamTextField: UITextField!
     @IBOutlet weak var regionTextField: UITextField!
     
+    var profileData = Profile()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        print(profileData)
     }
 
     @IBAction func editButtonPressed(_ sender: UIButton) {
