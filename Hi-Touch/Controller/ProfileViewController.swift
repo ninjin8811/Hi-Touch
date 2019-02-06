@@ -28,4 +28,11 @@ class ProfileViewController: UIViewController {
 
     @IBAction func editButtonPressed(_ sender: UIButton) {
     }
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+    }
+    
 }
