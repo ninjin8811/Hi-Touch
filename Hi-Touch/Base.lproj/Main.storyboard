@@ -323,7 +323,7 @@
         <!--Profile View Controller-->
         <scene sceneID="FJj-vc-7sf">
             <objects>
-                <viewController id="obF-zk-ASF" userLabel="Profile View Controller" sceneMemberID="viewController">
+                <viewController id="obF-zk-ASF" userLabel="Profile View Controller" customClass="ProfileViewController" customModule="Hi_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EXx-xc-yEe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -349,6 +349,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEM-3N-cp4">
                                         <rect key="frame" x="172" y="170" width="31" height="30"/>
                                         <state key="normal" title="編集"/>
+                                        <connections>
+                                            <action selector="editButtonPressed:" destination="obF-zk-ASF" eventType="touchUpInside" id="eww-ih-BPF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -536,6 +539,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ztj-pr-aYQ"/>
                     </view>
+                    <connections>
+                        <outlet property="ageTextField" destination="Nta-oF-MhR" id="Qfr-2G-2JA"/>
+                        <outlet property="nameTextField" destination="Xh2-68-fBP" id="kny-St-38n"/>
+                        <outlet property="profileImageView" destination="Qtv-x2-5xU" id="98k-h1-pvn"/>
+                        <outlet property="regionTextField" destination="Ca9-D6-VMq" id="DPW-G5-qLG"/>
+                        <outlet property="teamTextField" destination="rAf-Nn-6Cf" id="I8W-7D-q8c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mvH-Qk-gow" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
