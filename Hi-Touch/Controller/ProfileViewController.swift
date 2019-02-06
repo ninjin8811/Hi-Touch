@@ -19,12 +19,16 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var regionTextField: UITextField!
     
     var profileData = Profile()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         print(profileData)
+        
+        nameTextField.text = profileData.name
+        ageTextField.text = profileData.age
+        teamTextField.text = profileData.team
+        regionTextField.text = profileData.region
     }
 
     @IBAction func editButtonPressed(_ sender: UIButton) {
