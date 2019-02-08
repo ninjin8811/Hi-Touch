@@ -8,39 +8,35 @@
 
 import UIKit
 import Firebase
-//import RealmSwift
+import FirebaseStorage
+import FirebaseUI
+import SVProgressHUD
 
 class AccountTableViewController: UITableViewController {
     
     var dataRef = Database.database().reference()
-//    let realm = try! Realm()
-//    var profileRealm = Profile()
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet var accountTableView: UITableView!
     
-    let profileData = Profile()
+    var profileData = Profile()
     let secondArray = ["予定", "フレンド", "お気に入り", "アカウント設定"]
     let sectionTitle = ["プロフィール", "アカウント情報"]
+    var avatarImage = UIImage(named: "default.jpg")
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        if let data = realm.objects(Profile.self).first{
-//            profileRealm = data
-//        }else{
-//            print("データない！")
-//        }
-//
-        loadProfile()
         
         profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(AccountTableViewController.imageViewTapped(_:))))
         
         accountTableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "profileCell")
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+
+        loadProfile()
+    }
     
     
     
@@ -84,12 +80,8 @@ class AccountTableViewController: UITableViewController {
             profileCell.ageLabel.text = profileData.age
             profileCell.regionLabel.text = profileData.region
             profileCell.teamLabel.text = profileData.team
+            profileCell.profileImageView.image = avatarImage
 
-//            profileCell.nameLabel.text = profileRealm.name
-//            profileCell.ageLabel.text = String(profileRealm.age)
-//            profileCell.regionLabel.text = profileRealm.region
-//            profileCell.teamLabel.text = profileRealm.team
-            
             return profileCell
             
         }else{
@@ -121,7 +113,8 @@ class AccountTableViewController: UITableViewController {
         
         if segueIdentifier == "goToProfileSetting"{
             let destinationVC = segue.destination as! ProfileViewController
-            
+            destinationVC.hidesBottomBarWhenPushed = true
+            destinationVC.proDataRef = dataRef
             destinationVC.profileData = profileData
         }
     }
@@ -135,7 +128,7 @@ class AccountTableViewController: UITableViewController {
     
     func saveData(){
         
-        let profileDictionary = ["name": profileData.name, "age": profileData.age, "team": profileData.team, "region": profileData.region]
+        let profileDictionary = ["name": profileData.name, "age": profileData.age, "team": profileData.team, "region": profileData.region, "imageURL": profileData.imageURL]
         
         dataRef.setValue(profileDictionary) { (error, reference) in
             
@@ -153,7 +146,7 @@ class AccountTableViewController: UITableViewController {
             fatalError()
         }
         
-        dataRef = dataRef.child("users").child(userID)
+        dataRef = Database.database().reference().child("users").child(userID)
         dataRef.keepSynced(true)
         
         dataRef.observe(DataEventType.value) { (snapshot) in
@@ -161,49 +154,53 @@ class AccountTableViewController: UITableViewController {
             if let value = snapshot.value as? NSDictionary{
                 
                 print("ロード成功！")
+                print(value)
                 self.profileData.name = value["name"] as! String
                 self.profileData.age = value["age"] as! String
                 self.profileData.team = value["team"] as! String
                 self.profileData.region = value["region"] as! String
+                self.profileData.imageURL = value["imageURL"] as! String
+                
+                self.downloadImage(with: userID)
+                
+                print(self.profileData)
+                
+                self.tableView.reloadData()
 
             }else{
                 print("データなかったです！")
             }
         }
-        
-        
-//        if let uid = profileRealm.userID {
-//
-//            dataRef.child(uid).observe(DataEventType.value, with: { (snapshot) in           //ここはいらないかも
-//
-//                let snapshotValue = snapshot.value as! [String: AnyObject]
-//
-//            })
-//        }else{
-//
-//        }
-//
-//        if profileRealm.userID != nil{
-//
-//        }else{
-//            guard let userID = Auth.auth().currentUser?.uid else {
-//                fatalError()
-//            }
-//
-//            profileRealm.userID = userID
-//        }
-//
-        
     }
     
-    //MARK: - Initialize Firebase Database
-    
-    func initProfileOnFirebase(){
+    func downloadImage(with userID: String){
         
+        SVProgressHUD.show()
 
+        let imageRef = Storage.storage().reference().child("avatarImages").child("\(userID).jpg")
         
+//        profileImageView.sd_setImage(with: imageRef)
         
+        imageRef.getData(maxSize: 7 * 1024 * 1024) { (data, error) in
+
+            if error != nil{
+                print("画像を取得できませんでした！")
+            }else{
+                print("画像をダウンロードしました！")
+                
+                guard let imageData = data else{
+                    return
+                }
+                self.profileImageView.image = UIImage(data: imageData)
+                self.avatarImage = UIImage(data: imageData)
+                
+                self.tableView.reloadData()
+            }
+        }
+        SVProgressHUD.dismiss()
     }
+    
+
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         saveData()
     }
@@ -223,6 +220,8 @@ class AccountTableViewController: UITableViewController {
 extension AccountTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @objc func imageViewTapped(_ sender: UITapGestureRecognizer){
+        
+        print("画像がタップされました！")
         
         let pickerView = UIImagePickerController()
         

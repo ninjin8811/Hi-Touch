@@ -7,12 +7,13 @@
 //
 
 import Foundation
-import RealmSwift
+//import RealmSwift
 
-class Profile: Object{
+class Profile{
     
-    @objc dynamic var name: String = "吉野 史也"
-    @objc dynamic var team: String = "Liverpool"
-    @objc dynamic var age: String = "22"
-    @objc dynamic var region: String = "Osaka"
+    var name: String = "吉野 史也"
+    var team: String = "Liverpool"
+    var age: String = "22"
+    var region: String = "Osaka"
+    var imageURL: String = "default"
 }

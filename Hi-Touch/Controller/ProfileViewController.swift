@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 import SVProgressHUD
 
 class ProfileViewController: UIViewController {
@@ -19,11 +20,12 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var regionTextField: UITextField!
     
     var profileData = Profile()
+    var proDataRef = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print(profileData)
+        
+        profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.imageViewTapped(_:))))
         
         nameTextField.text = profileData.name
         ageTextField.text = profileData.age
@@ -32,12 +34,146 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func editButtonPressed(_ sender: UIButton) {
+        pickImage()
     }
     
-    @IBAction func cancelButtonPressed(_ sender: Any) {
+    func checkEmpty(checkValue: String) -> String{
+        
+        if checkValue != ""{
+            return checkValue
+        }else{
+            let alert = UIAlertController(title: "エラー", message: "全て入力してください", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+            
+            return ""
+        }
     }
+
+    
+    //MARK: - Data Manipulate Methods
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        
+        let name = checkEmpty(checkValue: nameTextField.text!)
+        let age = checkEmpty(checkValue: ageTextField.text!)
+        let team = checkEmpty(checkValue: teamTextField.text!)
+        let region = checkEmpty(checkValue: regionTextField.text!)
+        
+        let profileDictionary = ["name": name, "age": age, "team": team, "region": region, "imageURL": self.profileData.imageURL]
+        
+        proDataRef.setValue(profileDictionary) { (error, reference) in
+            
+            if error != nil{
+                print("セーブできませんでした！")
+            }else{
+                print("セーブできました！")
+            }
+        }
     }
     
+    
+    
+    func uploadImage(image: UIImage){
+        
+        SVProgressHUD.show()
+        
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        let imageRef = Storage.storage().reference().child("avatarImages").child("\(userID).jpg")
+        
+        if let data = UIImageJPEGRepresentation(profileImageView.image!, 1.0){
+            
+            imageRef.putData(data, metadata: nil) { (metadata, error) in
+                
+                if error != nil{
+                    print("画像をアップロードできませんでした！")
+                }else{
+                    
+                imageRef.downloadURL(completion: { (url, error) in
+                        
+                    if error != nil{
+                        print("ダウンロードurlがありません！")
+                    }else{
+                        guard let imageURL = url?.absoluteString else{
+                            return
+                        }
+                        self.profileData.imageURL = imageURL
+                        
+                        print("画像がアップロードされました！")
+                    }
+                })
+                }
+            }
+        }
+        SVProgressHUD.dismiss()
+    }
+}
+
+
+//MARK: - Select Profile Image Method
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    @objc func imageViewTapped(_ sender: UITapGestureRecognizer){
+        print("画像がタップされました！")
+        pickImage()
+    }
+    
+    func pickImage(){
+        
+        let pickerView = UIImagePickerController()
+        
+        let alert = UIAlertController(title: "プロフィール画像を選んでください", message: "", preferredStyle: .actionSheet)
+        let launchCameraAction = UIAlertAction(title: "カメラを起動", style: .default) { (action) in
+            
+            pickerView.sourceType = .camera
+            self.present(pickerView, animated: true, completion: nil)
+        }
+        let pickAction = UIAlertAction(title: "カメラロールから選択", style: .default) { (action) in
+            
+            pickerView.sourceType = .photoLibrary
+            self.present(pickerView, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        
+        alert.addAction(launchCameraAction)
+        alert.addAction(pickAction)
+        alert.addAction(cancelAction)
+        
+        pickerView.allowsEditing = true
+        pickerView.delegate = self
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        let resizedImage = resizeImage(image: image, width: 480)
+        
+        profileImageView.image = resizedImage
+        
+        uploadImage(image: resizedImage)
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func resizeImage(image: UIImage, width: Double) -> UIImage{
+        
+        let aspectStyle = image.size.height / image.size.width
+        
+        let resizedSize = CGSize(width: width, height: width * Double(aspectStyle))
+        
+        UIGraphicsBeginImageContext(resizedSize)
+        image.draw(in: CGRect(x: 0, y: 0, width: resizedSize.width, height: resizedSize.height))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return resizedImage!
+    }
 }
