@@ -18,6 +18,8 @@
 		9A73D3C52205685E00D4A918 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A73D3C32205685E00D4A918 /* Main.storyboard */; };
 		9A73D3C72205685E00D4A918 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A73D3C62205685E00D4A918 /* Assets.xcassets */; };
 		9A73D3CA2205685E00D4A918 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A73D3C82205685E00D4A918 /* LaunchScreen.storyboard */; };
+		9AA1FB2D220EC32D0000AEE7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1FB2C220EC32D0000AEE7 /* SearchViewController.swift */; };
+		9AA1FB2F220EE3640000AEE7 /* SetTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1FB2E220EE3640000AEE7 /* SetTermsViewController.swift */; };
 		9AA875EC220ACA110055B03C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA875EB220ACA110055B03C /* ProfileViewController.swift */; };
 		9AB5637D2205807C00BAA0B2 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB5637C2205807C00BAA0B2 /* WelcomeViewController.swift */; };
 		9AB5637F2205809900BAA0B2 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB5637E2205809900BAA0B2 /* RegisterViewController.swift */; };
@@ -38,6 +40,8 @@
 		9A73D3C62205685E00D4A918 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A73D3C92205685E00D4A918 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A73D3CB2205685E00D4A918 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AA1FB2C220EC32D0000AEE7 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		9AA1FB2E220EE3640000AEE7 /* SetTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTermsViewController.swift; sourceTree = "<group>"; };
 		9AA875EB220ACA110055B03C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9AB5637C2205807C00BAA0B2 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		9AB5637E2205809900BAA0B2 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +139,8 @@
 				9A6CEABB2206A29900FD37FB /* VerifyViewController.swift */,
 				9A6CEABF2206B59E00FD37FB /* AccountTableViewController.swift */,
 				9AA875EB220ACA110055B03C /* ProfileViewController.swift */,
+				9AA1FB2C220EC32D0000AEE7 /* SearchViewController.swift */,
+				9AA1FB2E220EE3640000AEE7 /* SetTermsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -270,7 +276,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AA1FB2D220EC32D0000AEE7 /* SearchViewController.swift in Sources */,
 				9AB5637D2205807C00BAA0B2 /* WelcomeViewController.swift in Sources */,
+				9AA1FB2F220EE3640000AEE7 /* SetTermsViewController.swift in Sources */,
 				9A537303220757AF00C98EC5 /* Profile.swift in Sources */,
 				9A73D3C02205685E00D4A918 /* AppDelegate.swift in Sources */,
 				9A6CEAC02206B59E00FD37FB /* AccountTableViewController.swift in Sources */,

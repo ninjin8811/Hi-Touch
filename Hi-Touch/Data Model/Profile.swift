@@ -10,10 +10,9 @@ import Foundation
 //import RealmSwift
 
 class Profile{
-    
     var name: String = "吉野 史也"
     var team: String = "Liverpool"
     var age: String = "22"
     var region: String = "Osaka"
-    var imageURL: String = "default"
+    var userID: String = "default"
 }

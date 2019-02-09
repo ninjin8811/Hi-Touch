@@ -145,7 +145,7 @@ class AccountTableViewController: UITableViewController {
                 self.profileData.age = value["age"] as! String
                 self.profileData.team = value["team"] as! String
                 self.profileData.region = value["region"] as! String
-                self.profileData.imageURL = value["imageURL"] as! String
+                self.profileData.userID = value["userID"] as! String
                 
                 self.downloadImage(with: userID)
                 
