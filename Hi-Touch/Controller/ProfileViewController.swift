@@ -19,8 +19,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var teamTextField: UITextField!
     @IBOutlet weak var regionTextField: UITextField!
     
+    
+    
     var profileData = Profile()
     var proDataRef = Database.database().reference()
+    var avatarImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,10 @@ class ProfileViewController: UIViewController {
         ageTextField.text = profileData.age
         teamTextField.text = profileData.team
         regionTextField.text = profileData.region
+        
+        if let image = avatarImage{
+            profileImageView.image = image
+        }
     }
 
     @IBAction func editButtonPressed(_ sender: UIButton) {

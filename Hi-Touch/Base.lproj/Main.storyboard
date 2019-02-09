@@ -283,14 +283,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <imageView key="tableHeaderView" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="Ywx-MR-vRz" userLabel="Profile Image">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <gestureRecognizers/>
-                        </imageView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountViewCell" id="Bkn-U9-nJh">
-                                <rect key="frame" x="0.0" y="255.33333333333334" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="55.333333333333336" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bkn-U9-nJh" id="bX4-YA-xlu">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -304,7 +299,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="アカウント" id="TRw-zN-NFE">
-                        <barButtonItem key="rightBarButtonItem" title="セーブ" id="eIV-Ce-MWh">
+                        <barButtonItem key="rightBarButtonItem" title="ログアウト" id="eIV-Ce-MWh">
                             <connections>
                                 <action selector="logoutButtonPressed:" destination="Bbz-bt-58T" id="QT1-Sz-AzT"/>
                             </connections>
@@ -312,7 +307,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="accountTableView" destination="c3l-v5-LoE" id="FVy-8X-4PV"/>
-                        <outlet property="profileImageView" destination="Ywx-MR-vRz" id="dio-1E-766"/>
                         <segue destination="obF-zk-ASF" kind="show" identifier="goToProfileSetting" id="qcF-SB-iAX"/>
                     </connections>
                 </tableViewController>

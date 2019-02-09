@@ -16,19 +16,17 @@ class AccountTableViewController: UITableViewController {
     
     var dataRef = Database.database().reference()
     
-    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet var accountTableView: UITableView!
     
     var profileData = Profile()
     let secondArray = ["予定", "フレンド", "お気に入り", "アカウント設定"]
     let sectionTitle = ["プロフィール", "アカウント情報"]
-    var avatarImage = UIImage(named: "default.jpg")
+    var avatarImage: UIImage?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(AccountTableViewController.imageViewTapped(_:))))
         
         accountTableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "profileCell")
     }
@@ -37,10 +35,6 @@ class AccountTableViewController: UITableViewController {
 
         loadProfile()
     }
-    
-    
-    
-    
     
 
 
@@ -116,6 +110,12 @@ class AccountTableViewController: UITableViewController {
             destinationVC.hidesBottomBarWhenPushed = true
             destinationVC.proDataRef = dataRef
             destinationVC.profileData = profileData
+            
+            if let image = avatarImage{
+                destinationVC.avatarImage = image
+            }else{
+                print("画像を渡せませんでした！")
+            }
         }
     }
     
@@ -125,20 +125,6 @@ class AccountTableViewController: UITableViewController {
     
     
     //MARK: - Data Manipulate Methods
-    
-    func saveData(){
-        
-        let profileDictionary = ["name": profileData.name, "age": profileData.age, "team": profileData.team, "region": profileData.region, "imageURL": profileData.imageURL]
-        
-        dataRef.setValue(profileDictionary) { (error, reference) in
-            
-            if error != nil{
-                print("セーブできませんでした！")
-            }else{
-                print("セーブできました！")
-            }
-        }
-    }
     
     func loadProfile(){
         
@@ -179,19 +165,19 @@ class AccountTableViewController: UITableViewController {
 
         let imageRef = Storage.storage().reference().child("avatarImages").child("\(userID).jpg")
         
-//        profileImageView.sd_setImage(with: imageRef)
+//        avatarImage.sd_setImage(with: imageRef)
         
         imageRef.getData(maxSize: 7 * 1024 * 1024) { (data, error) in
 
             if error != nil{
                 print("画像を取得できませんでした！")
+                self.avatarImage = UIImage(named: "profile-default.jpg")
             }else{
                 print("画像をダウンロードしました！")
                 
                 guard let imageData = data else{
                     return
                 }
-                self.profileImageView.image = UIImage(data: imageData)
                 self.avatarImage = UIImage(data: imageData)
                 
                 self.tableView.reloadData()
@@ -202,59 +188,13 @@ class AccountTableViewController: UITableViewController {
     
 
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
-        saveData()
-    }
-    
-}
-
-
-
-
-
-
-
-
-
-//MARK: - Select Profile Image Method
-
-extension AccountTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    
-    @objc func imageViewTapped(_ sender: UITapGestureRecognizer){
         
-        print("画像がタップされました！")
-        
-        let pickerView = UIImagePickerController()
-        
-        let alert = UIAlertController(title: "プロフィール画像を選んでください", message: "", preferredStyle: .actionSheet)
-        let launchCameraAction = UIAlertAction(title: "カメラを起動", style: .default) { (action) in
-            
-            pickerView.sourceType = .camera
-            self.present(pickerView, animated: true, completion: nil)
+        do{
+            try Auth.auth().signOut()
+            dismiss(animated: true, completion: nil)
+        }catch{
+            print("ログアウト失敗！")
         }
-        let pickAction = UIAlertAction(title: "カメラロールから選択", style: .default) { (action) in
-            
-            pickerView.sourceType = .photoLibrary
-            self.present(pickerView, animated: true, completion: nil)
-        }
-        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
-        
-        alert.addAction(launchCameraAction)
-        alert.addAction(pickAction)
-        alert.addAction(cancelAction)
-        
-        pickerView.allowsEditing = true
-        pickerView.delegate = self
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        profileImageView.image = image
-        
-        self.dismiss(animated: true, completion: nil)
     }
     
 }
