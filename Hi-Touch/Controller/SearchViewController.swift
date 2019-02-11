@@ -16,28 +16,32 @@ class SearchViewController: UITableViewController {
     
     var searchedData = [Profile](){
         didSet{
-            loadItems()
+            tableView.reloadData()
         }
     }
 
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        searchTableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "profileCell")
+    }
+    
+    
+    
+    
+    
+    
     @IBAction func check(_ sender: UIBarButtonItem) {
             tableView.reloadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        searchTableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "profileCell")
-    }
-    
-    func loadItems(){
-        tableView.reloadData()
-    }
+
     
 
     // MARK: - Table view delegate

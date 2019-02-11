@@ -578,7 +578,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="検索" id="zMZ-AT-Iwp">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="rGX-fQ-ic0">
+                        <barButtonItem key="leftBarButtonItem" title="リロード" id="rGX-fQ-ic0">
                             <connections>
                                 <action selector="check:" destination="vVH-SC-KQb" id="GGq-xr-H4s"/>
                             </connections>
@@ -591,6 +591,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchTableView" destination="b9i-a8-rtM" id="9Wg-xr-7Oq"/>
+                        <segue destination="etW-Fq-g8k" kind="show" identifier="goToSelectedProfile" id="2uU-Sj-zqC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ijQ-qS-oxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -765,6 +766,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uwP-2J-RjY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4833.3333333333339" y="-777.71739130434787"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="nAv-xb-qa9">
+            <objects>
+                <viewController id="etW-Fq-g8k" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UJC-9b-vbK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="gNK-ya-lza"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fAh-DQ-32S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4833" y="-1573"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kZy-BE-h2G">
