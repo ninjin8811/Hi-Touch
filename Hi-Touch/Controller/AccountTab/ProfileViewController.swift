@@ -60,6 +60,7 @@ class ProfileViewController: UIViewController {
     }
 
     
+/*-----------------------------------------------------------------------------------------*/
     //MARK: - Data Manipulate Methods
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
@@ -100,22 +101,6 @@ class ProfileViewController: UIViewController {
                     print("画像をアップロードできませんでした！")
                 }else{
                     print("画像がアップロードされました！")
-                    
-                    
-                    
-//                imageRef.downloadURL(completion: { (url, error) in
-//
-//                    if error != nil{
-//                        print("ダウンロードurlがありません！")
-//                    }else{
-//                        guard let imageURL = url?.absoluteString else{
-//                            return
-//                        }
-//                        self.profileData.imageURL = imageURL
-//
-//                        print("画像がアップロードされました！")
-//                    }
-//                })
                 }
             }
         }
@@ -124,6 +109,7 @@ class ProfileViewController: UIViewController {
 }
 
 
+/*-----------------------------------------------------------------------------------------*/
 //MARK: - Select Profile Image Method
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{

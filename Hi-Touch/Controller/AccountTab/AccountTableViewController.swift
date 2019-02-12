@@ -37,7 +37,7 @@ class AccountTableViewController: UITableViewController {
     }
     
 
-
+/*-----------------------------------------------------------------------------------------*/
     // MARK: - Table view delegate
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -123,7 +123,7 @@ class AccountTableViewController: UITableViewController {
     
     
     
-    
+/*-----------------------------------------------------------------------------------------*/
     //MARK: - Data Manipulate Methods
     
     func loadProfile(){
@@ -167,7 +167,7 @@ class AccountTableViewController: UITableViewController {
         
 //        avatarImage.sd_setImage(with: imageRef)
         
-        imageRef.getData(maxSize: 7 * 1024 * 1024) { (data, error) in
+        imageRef.getData(maxSize: 1 * 1024 * 1024) { (data, error) in
 
             if error != nil{
                 print("画像を取得できませんでした！")
@@ -196,5 +196,4 @@ class AccountTableViewController: UITableViewController {
             print("ログアウト失敗！")
         }
     }
-    
 }

@@ -12,6 +12,11 @@
 		9A5372FC2206E8BB00C98EC5 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5372FB2206E8BB00C98EC5 /* ProfileCell.xib */; };
 		9A5373002206F30B00C98EC5 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5372FF2206F30B00C98EC5 /* ProfileCell.swift */; };
 		9A537303220757AF00C98EC5 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A537302220757AF00C98EC5 /* Profile.swift */; };
+		9A5F72A222128D4000477B69 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F72A122128D4000477B69 /* UserProfileViewController.swift */; };
+		9A5F72A42212C9C600477B69 /* ChatUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F72A32212C9C600477B69 /* ChatUserCell.xib */; };
+		9A5F72AA2212CDF400477B69 /* ChatUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F72A92212CDF400477B69 /* ChatUserCell.swift */; };
+		9A5F72B22212D10700477B69 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F72B12212D10700477B69 /* ChatTableViewController.swift */; };
+		9A5F72B42212D12700477B69 /* ChatUserListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F72B32212D12700477B69 /* ChatUserListTableViewController.swift */; };
 		9A6CEABC2206A29900FD37FB /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6CEABB2206A29900FD37FB /* VerifyViewController.swift */; };
 		9A6CEAC02206B59E00FD37FB /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6CEABF2206B59E00FD37FB /* AccountTableViewController.swift */; };
 		9A73D3C02205685E00D4A918 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A73D3BF2205685E00D4A918 /* AppDelegate.swift */; };
@@ -32,6 +37,11 @@
 		9A5372FB2206E8BB00C98EC5 /* ProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
 		9A5372FF2206F30B00C98EC5 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		9A537302220757AF00C98EC5 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		9A5F72A122128D4000477B69 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		9A5F72A32212C9C600477B69 /* ChatUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatUserCell.xib; sourceTree = "<group>"; };
+		9A5F72A92212CDF400477B69 /* ChatUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUserCell.swift; sourceTree = "<group>"; };
+		9A5F72B12212D10700477B69 /* ChatTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
+		9A5F72B32212D12700477B69 /* ChatUserListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUserListTableViewController.swift; sourceTree = "<group>"; };
 		9A6CEABB2206A29900FD37FB /* VerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
 		9A6CEABF2206B59E00FD37FB /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		9A73D3BC2205685E00D4A918 /* Hi-Touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hi-Touch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +94,8 @@
 			children = (
 				9A5372FB2206E8BB00C98EC5 /* ProfileCell.xib */,
 				9A5372FF2206F30B00C98EC5 /* ProfileCell.swift */,
+				9A5F72A32212C9C600477B69 /* ChatUserCell.xib */,
+				9A5F72A92212CDF400477B69 /* ChatUserCell.swift */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -94,6 +106,45 @@
 				9A537302220757AF00C98EC5 /* Profile.swift */,
 			);
 			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		9A5F72AB2212D04300477B69 /* WelcomeView */ = {
+			isa = PBXGroup;
+			children = (
+				9AB5637C2205807C00BAA0B2 /* WelcomeViewController.swift */,
+				9AB5637E2205809900BAA0B2 /* RegisterViewController.swift */,
+				9AB56380220580A700BAA0B2 /* LoginViewController.swift */,
+				9A6CEABB2206A29900FD37FB /* VerifyViewController.swift */,
+			);
+			path = WelcomeView;
+			sourceTree = "<group>";
+		};
+		9A5F72AC2212D04E00477B69 /* AccountTab */ = {
+			isa = PBXGroup;
+			children = (
+				9A6CEABF2206B59E00FD37FB /* AccountTableViewController.swift */,
+				9AA875EB220ACA110055B03C /* ProfileViewController.swift */,
+			);
+			path = AccountTab;
+			sourceTree = "<group>";
+		};
+		9A5F72AD2212D06800477B69 /* SearchTab */ = {
+			isa = PBXGroup;
+			children = (
+				9A5F72A122128D4000477B69 /* UserProfileViewController.swift */,
+				9AA1FB2C220EC32D0000AEE7 /* SearchViewController.swift */,
+				9AA1FB2E220EE3640000AEE7 /* SetTermsViewController.swift */,
+			);
+			path = SearchTab;
+			sourceTree = "<group>";
+		};
+		9A5F72AE2212D06F00477B69 /* ChatTab */ = {
+			isa = PBXGroup;
+			children = (
+				9A5F72B12212D10700477B69 /* ChatTableViewController.swift */,
+				9A5F72B32212D12700477B69 /* ChatUserListTableViewController.swift */,
+			);
+			path = ChatTab;
 			sourceTree = "<group>";
 		};
 		9A73D3B32205685E00D4A918 = {
@@ -117,9 +168,9 @@
 		9A73D3BE2205685E00D4A918 /* Hi-Touch */ = {
 			isa = PBXGroup;
 			children = (
+				9A73D3BF2205685E00D4A918 /* AppDelegate.swift */,
 				9A5373012207577D00C98EC5 /* Data Model */,
 				9A5372FA2206E85100C98EC5 /* Custom Cell */,
-				9A73D3BF2205685E00D4A918 /* AppDelegate.swift */,
 				9AB5637B2205803F00BAA0B2 /* Controller */,
 				9A73D3C32205685E00D4A918 /* Main.storyboard */,
 				9A73D3C62205685E00D4A918 /* Assets.xcassets */,
@@ -133,14 +184,10 @@
 		9AB5637B2205803F00BAA0B2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9AB5637C2205807C00BAA0B2 /* WelcomeViewController.swift */,
-				9AB5637E2205809900BAA0B2 /* RegisterViewController.swift */,
-				9AB56380220580A700BAA0B2 /* LoginViewController.swift */,
-				9A6CEABB2206A29900FD37FB /* VerifyViewController.swift */,
-				9A6CEABF2206B59E00FD37FB /* AccountTableViewController.swift */,
-				9AA875EB220ACA110055B03C /* ProfileViewController.swift */,
-				9AA1FB2C220EC32D0000AEE7 /* SearchViewController.swift */,
-				9AA1FB2E220EE3640000AEE7 /* SetTermsViewController.swift */,
+				9A5F72AE2212D06F00477B69 /* ChatTab */,
+				9A5F72AD2212D06800477B69 /* SearchTab */,
+				9A5F72AC2212D04E00477B69 /* AccountTab */,
+				9A5F72AB2212D04300477B69 /* WelcomeView */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -210,6 +257,7 @@
 				9A0B61632205939C006A395A /* GoogleService-Info.plist in Resources */,
 				9A73D3C72205685E00D4A918 /* Assets.xcassets in Resources */,
 				9A73D3C52205685E00D4A918 /* Main.storyboard in Resources */,
+				9A5F72A42212C9C600477B69 /* ChatUserCell.xib in Resources */,
 				9A5372FC2206E8BB00C98EC5 /* ProfileCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,16 +325,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AA1FB2D220EC32D0000AEE7 /* SearchViewController.swift in Sources */,
+				9A5F72AA2212CDF400477B69 /* ChatUserCell.swift in Sources */,
+				9A5F72A222128D4000477B69 /* UserProfileViewController.swift in Sources */,
 				9AB5637D2205807C00BAA0B2 /* WelcomeViewController.swift in Sources */,
 				9AA1FB2F220EE3640000AEE7 /* SetTermsViewController.swift in Sources */,
 				9A537303220757AF00C98EC5 /* Profile.swift in Sources */,
 				9A73D3C02205685E00D4A918 /* AppDelegate.swift in Sources */,
+				9A5F72B42212D12700477B69 /* ChatUserListTableViewController.swift in Sources */,
 				9A6CEAC02206B59E00FD37FB /* AccountTableViewController.swift in Sources */,
 				9AB56381220580A700BAA0B2 /* LoginViewController.swift in Sources */,
 				9A6CEABC2206A29900FD37FB /* VerifyViewController.swift in Sources */,
 				9AA875EC220ACA110055B03C /* ProfileViewController.swift in Sources */,
 				9AB5637F2205809900BAA0B2 /* RegisterViewController.swift in Sources */,
 				9A5373002206F30B00C98EC5 /* ProfileCell.swift in Sources */,
+				9A5F72B22212D10700477B69 /* ChatTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
