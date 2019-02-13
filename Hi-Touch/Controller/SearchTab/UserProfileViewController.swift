@@ -38,8 +38,8 @@ class UserProfileViewController: UIViewController {
         }
         destinationVC.popToViewController(vc, animated: true)
         
-        vc.userList.append(profileData)
-
+        vc.addedUsername = profileData.name
+        
         if let image = avatarImage {
             vc.avatarImage = image
         }

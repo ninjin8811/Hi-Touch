@@ -11,7 +11,10 @@ import RealmSwift
 
 class ChatUserListTableViewController: UITableViewController {
     
-    var userList = [Profile]()
+    let realm = try! Realm()
+    var users: Results<ChatUserProfile>?
+    
+    var addedUsername = "name"
     var avatarImage: UIImage?{
         didSet{
 //            performSegue(withIdentifier: "goToChat", sender: self)
@@ -39,14 +42,30 @@ class ChatUserListTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! ChatUserCell
         
-        if let image = avatarImage{
-            cell.avatarImageView.image = image
-        }
-        
-        cell.nameLabel.text = userList[indexPath.row].name
+        cell.nameLabel?.text = users?[indexPath.row].name ?? "No Users"
+    
+//        if let image = avatarImage{
+//            cell.avatarImageView.image = image
+//        }
+//
+//        cell.nameLabel.text = addedUser.name
         
         return cell
     }
+    
+    
+/*-----------------------------------------------------------------------------------------*/
+    //MARK: Data Manipulate Methods
+    
+    func loadUsers(){
+        users = realm.objects(ChatUserProfile.self)
+        tableView.reloadData()
+    }
+    
+    func save(){
+        
+    }
+
     
     
     
