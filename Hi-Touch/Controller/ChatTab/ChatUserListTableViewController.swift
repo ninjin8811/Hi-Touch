@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseStorage
 
 class ChatUserListTableViewController: UITableViewController {
     
@@ -79,4 +80,34 @@ class ChatUserListTableViewController: UITableViewController {
         }
     }
 
+}
+
+
+extension UIImageView{
+    
+    static let imageCache = NSCache<AnyObject,AnyObject>()
+    
+    func casheImage(path: String){
+        
+        if let imageFromCache = UIImageView.imageCache.object(forKey: path as AnyObject) as? UIImage{
+            
+            //キャッシュに画像が既にあったときの処理
+        }else{
+            
+            let imageRef = Storage.storage().reference().child("avatarImages").child("\(path).jpg")
+            
+            imageRef.getData(maxSize: 1 * 1024 * 1024, completion: { (data, error) in
+                
+                if error != nil{
+                    print("チャット相手のユーザー画像をダウンロードできませんでした！")
+                }else{
+                    guard let imageData = data else{
+                        return
+                    }
+                    
+                }
+            })
+        }
+        
+    }
 }
