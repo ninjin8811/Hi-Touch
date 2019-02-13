@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import SVProgressHUD
+import CodableFirebase
 
 class ProfileViewController: UIViewController {
     
@@ -69,7 +70,7 @@ class ProfileViewController: UIViewController {
         let age = checkEmpty(checkValue: ageTextField.text!)
         let team = checkEmpty(checkValue: teamTextField.text!)
         let region = checkEmpty(checkValue: regionTextField.text!)
-        
+
         let profileDictionary = ["name": name, "age": age, "team": team, "region": region, "userID": Auth.auth().currentUser?.uid]
         
         proDataRef.setValue(profileDictionary) { (error, reference) in

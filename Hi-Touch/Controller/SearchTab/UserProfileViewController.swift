@@ -29,14 +29,20 @@ class UserProfileViewController: UIViewController {
 
     @IBAction func sendMessageButtonPressed(_ sender: UIButton) {
         
-        performSegue(withIdentifier: "goToChatUserList", sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationVC = self.tabBarController?.viewControllers![1] as? UINavigationController else{
+            preconditionFailure("タブバーを取得できませんでした")
+        }
+        self.tabBarController?.selectedViewController = destinationVC
+        guard let vc = destinationVC.viewControllers[0] as? ChatUserListTableViewController else{
+            preconditionFailure("チャットユーザーのビューが取得できませんでした")
+        }
+        destinationVC.popToViewController(vc, animated: true)
         
-        let destinationVC = segue.destination as! ChatUserListTableViewController
-        
-        destinationVC.userList.append(profileData)
+        vc.userList.append(profileData)
+
+        if let image = avatarImage {
+            vc.avatarImage = image
+        }
     }
     
 }

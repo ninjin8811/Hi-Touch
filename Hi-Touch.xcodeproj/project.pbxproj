@@ -29,6 +29,10 @@
 		9AB5637D2205807C00BAA0B2 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB5637C2205807C00BAA0B2 /* WelcomeViewController.swift */; };
 		9AB5637F2205809900BAA0B2 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB5637E2205809900BAA0B2 /* RegisterViewController.swift */; };
 		9AB56381220580A700BAA0B2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB56380220580A700BAA0B2 /* LoginViewController.swift */; };
+		9AF145DA2213DF5A008DE2A1 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF145D82213DF5A008DE2A1 /* MessageCell.swift */; };
+		9AF145DB2213DF5A008DE2A1 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF145D92213DF5A008DE2A1 /* MessageCell.xib */; };
+		9AF145DF2213F625008DE2A1 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF145DE2213F625008DE2A1 /* Messages.swift */; };
+		9AF145E12213FCEE008DE2A1 /* ChatUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF145E02213FCEE008DE2A1 /* ChatUserProfile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +60,10 @@
 		9AB5637C2205807C00BAA0B2 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		9AB5637E2205809900BAA0B2 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9AB56380220580A700BAA0B2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9AF145D82213DF5A008DE2A1 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		9AF145D92213DF5A008DE2A1 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		9AF145DE2213F625008DE2A1 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		9AF145E02213FCEE008DE2A1 /* ChatUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUserProfile.swift; sourceTree = "<group>"; };
 		BC16082C9764466BFC0A5C35 /* Pods_Hi_Touch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hi_Touch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AC3B7847E17CEC6DBD84B4 /* Pods-Hi-Touch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hi-Touch.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hi-Touch/Pods-Hi-Touch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +104,8 @@
 				9A5372FF2206F30B00C98EC5 /* ProfileCell.swift */,
 				9A5F72A32212C9C600477B69 /* ChatUserCell.xib */,
 				9A5F72A92212CDF400477B69 /* ChatUserCell.swift */,
+				9AF145D82213DF5A008DE2A1 /* MessageCell.swift */,
+				9AF145D92213DF5A008DE2A1 /* MessageCell.xib */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -104,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				9A537302220757AF00C98EC5 /* Profile.swift */,
+				9AF145DE2213F625008DE2A1 /* Messages.swift */,
+				9AF145E02213FCEE008DE2A1 /* ChatUserProfile.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -258,6 +270,7 @@
 				9A73D3C72205685E00D4A918 /* Assets.xcassets in Resources */,
 				9A73D3C52205685E00D4A918 /* Main.storyboard in Resources */,
 				9A5F72A42212C9C600477B69 /* ChatUserCell.xib in Resources */,
+				9AF145DB2213DF5A008DE2A1 /* MessageCell.xib in Resources */,
 				9A5372FC2206E8BB00C98EC5 /* ProfileCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +304,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Hi-Touch/Pods-Hi-Touch-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/CodableFirebase/CodableFirebase.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -303,6 +317,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CodableFirebase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
@@ -324,7 +339,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AF145E12213FCEE008DE2A1 /* ChatUserProfile.swift in Sources */,
 				9AA1FB2D220EC32D0000AEE7 /* SearchViewController.swift in Sources */,
+				9AF145DF2213F625008DE2A1 /* Messages.swift in Sources */,
+				9AF145DA2213DF5A008DE2A1 /* MessageCell.swift in Sources */,
 				9A5F72AA2212CDF400477B69 /* ChatUserCell.swift in Sources */,
 				9A5F72A222128D4000477B69 /* UserProfileViewController.swift in Sources */,
 				9AB5637D2205807C00BAA0B2 /* WelcomeViewController.swift in Sources */,

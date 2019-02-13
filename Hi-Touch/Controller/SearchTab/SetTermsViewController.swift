@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CodableFirebase
 
 class SetTermsViewController: UIViewController {
     
@@ -36,9 +37,15 @@ class SetTermsViewController: UIViewController {
 
             for item in snapshot.children{
                 let snap = item as! DataSnapshot
-                let snapshotValue = snap.value as! [String: String]
                 
-                self.narrowSearchedData(snapshotValue)
+                guard let value = snap.value else{
+                    return
+                }
+                let data = try! FirebaseDecoder().decode(Profile.self, from: value)
+                
+//                let snapshotValue = snap.value as! [String: String]
+                
+                self.narrowSearchedData(data)
             }
             self.goToPreviousView()
         })
@@ -47,37 +54,37 @@ class SetTermsViewController: UIViewController {
     
     
     
-    func narrowSearchedData(_ value: Dictionary<String, String>){
+    func narrowSearchedData(_ value: Profile){
         
-        if genderTextField.text! != ""{
-            if genderTextField.text! != value["gender"]{
-                return
-            }
-        }
+//        if genderTextField.text! != ""{
+//            if genderTextField.text! != value.gender{
+//                return
+//            }
+//        }
         if ageTextField.text! != ""{
-            if ageTextField.text! != value["age"]{
+            if ageTextField.text! != value.age{
                 return
             }
         }
         if teamTextField.text! != ""{
-            if teamTextField.text! != value["team"]{
+            if teamTextField.text! != value.team{
                 return
             }
         }
         if regionTextField.text! != ""{
-            if teamTextField.text! != value["team"]{
+            if teamTextField.text! != value.team{
                 return
             }
         }
         
-        let addUser = Profile()
-        addUser.age = value["age"]!
-        addUser.name = value["name"]!
-        addUser.region = value["region"]!
-        addUser.team = value["team"]!
-        addUser.userID = value["userID"]!
+//        let addUser = Profile()
+//        addUser.age = value["age"]!
+//        addUser.name = value["name"]!
+//        addUser.region = value["region"]!
+//        addUser.team = value["team"]!
+//        addUser.userID = value["userID"]!
         
-        list.append(addUser)
+        list.append(value)
     }
     
     

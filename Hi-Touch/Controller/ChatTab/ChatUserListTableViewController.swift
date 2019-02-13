@@ -14,7 +14,7 @@ class ChatUserListTableViewController: UITableViewController {
     var userList = [Profile]()
     var avatarImage: UIImage?{
         didSet{
-            performSegue(withIdentifier: "goToChat", sender: self)
+//            performSegue(withIdentifier: "goToChat", sender: self)
         }
     }
     
@@ -32,7 +32,7 @@ class ChatUserListTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userList.count
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,6 +42,8 @@ class ChatUserListTableViewController: UITableViewController {
         if let image = avatarImage{
             cell.avatarImageView.image = image
         }
+        
+        cell.nameLabel.text = userList[indexPath.row].name
         
         return cell
     }

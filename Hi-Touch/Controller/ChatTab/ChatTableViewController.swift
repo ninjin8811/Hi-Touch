@@ -12,6 +12,8 @@ class ChatTableViewController: UITableViewController {
     
     var profileData = Profile()
 
+    @IBOutlet var chatTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

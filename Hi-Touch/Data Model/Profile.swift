@@ -7,9 +7,9 @@
 //
 
 import Foundation
-//import RealmSwift
 
-class Profile{
+
+class Profile: Decodable{
     var name: String = "吉野 史也"
     var team: String = "Liverpool"
     var age: String = "22"

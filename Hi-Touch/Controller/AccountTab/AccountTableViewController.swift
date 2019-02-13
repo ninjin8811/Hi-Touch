@@ -11,6 +11,7 @@ import Firebase
 import FirebaseStorage
 import FirebaseUI
 import SVProgressHUD
+import CodableFirebase
 
 class AccountTableViewController: UITableViewController {
     
@@ -27,12 +28,7 @@ class AccountTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         accountTableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "profileCell")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-
         loadProfile()
     }
     
@@ -137,24 +133,15 @@ class AccountTableViewController: UITableViewController {
         
         dataRef.observe(DataEventType.value) { (snapshot) in
             
-            if let value = snapshot.value as? NSDictionary{
-                
-                print("ロード成功！")
-                print(value)
-                self.profileData.name = value["name"] as! String
-                self.profileData.age = value["age"] as! String
-                self.profileData.team = value["team"] as! String
-                self.profileData.region = value["region"] as! String
-                self.profileData.userID = value["userID"] as! String
-                
-                self.downloadImage(with: userID)
-                
-                print(self.profileData)
-                
-                self.tableView.reloadData()
-
+            if let value = snapshot.value{
+                do{
+                    self.profileData = try! FirebaseDecoder().decode(Profile.self, from: value)
+                    self.profileData.userID = userID
+                    self.downloadImage(with: userID)
+                    self.tableView.reloadData()
+                }
             }else{
-                print("データなかったです！")
+                print("プロフィールを取得できませんでした")
             }
         }
     }

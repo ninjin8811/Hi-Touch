@@ -517,7 +517,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mvH-Qk-gow" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4178" y="477"/>
+            <point key="canvasLocation" x="3828" y="478"/>
         </scene>
         <!--Chat Table View Controller-->
         <scene sceneID="RP7-qe-4Q2">
@@ -542,10 +542,13 @@
                             <outlet property="delegate" destination="Woi-zb-9dY" id="Ntm-X5-i79"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="chatTableView" destination="gsE-EW-95Q" id="BDx-7g-0ym"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7AL-7a-jC1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6957" y="-3"/>
+            <point key="canvasLocation" x="6946" y="-20"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hPs-tc-xNI">
@@ -889,7 +892,6 @@
                                                 <state key="normal" title="メッセージを送る"/>
                                                 <connections>
                                                     <action selector="sendMessageButtonPressed:" destination="etW-Fq-g8k" eventType="touchUpInside" id="bug-ea-SRs"/>
-                                                    <segue destination="Aeb-yd-rrH" kind="show" identifier="goToChatUserList" id="zOV-Ld-2UI"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -971,7 +973,6 @@
         <image name="profile-default" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zOV-Ld-2UI"/>
         <segue reference="ptN-n7-9AX"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,5 +15,7 @@ pod 'Firebase/Database'
 pod 'SVProgressHUD'
 pod ‘Firebase/Storage’
 pod 'FirebaseUI/Storage'
+pod 'CodableFirebase’,‘0.0.7’
+
 
 end
