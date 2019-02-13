@@ -16,6 +16,6 @@ pod 'SVProgressHUD'
 pod ‘Firebase/Storage’
 pod 'FirebaseUI/Storage'
 pod 'CodableFirebase’,‘0.0.7’
-
+pod 'AlamofireImage', '~> 3.5'
 
 end

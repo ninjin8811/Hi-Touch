@@ -14,4 +14,5 @@ class Profile: Decodable{
     var age: String = "22"
     var region: String = "Osaka"
     var userID: String = "default"
+    var imageURL: String = ""
 }

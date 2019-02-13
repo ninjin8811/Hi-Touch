@@ -71,7 +71,7 @@ class ProfileViewController: UIViewController {
         let team = checkEmpty(checkValue: teamTextField.text!)
         let region = checkEmpty(checkValue: regionTextField.text!)
 
-        let profileDictionary = ["name": name, "age": age, "team": team, "region": region, "userID": Auth.auth().currentUser?.uid]
+        let profileDictionary = ["name": name, "age": age, "team": team, "region": region, "userID": Auth.auth().currentUser?.uid, "imageURL": profileData.imageURL]
         
         proDataRef.setValue(profileDictionary) { (error, reference) in
             
@@ -102,6 +102,18 @@ class ProfileViewController: UIViewController {
                     print("画像をアップロードできませんでした！")
                 }else{
                     print("画像がアップロードされました！")
+                    
+                    imageRef.downloadURL(completion: { (url, error) in
+                        
+                        if error != nil{
+                            print("ダウンロードURLが取得できませんでした！")
+                        }else{
+                            guard let imageURL = url?.absoluteString else{
+                                return
+                            }
+                            self.profileData.imageURL = imageURL
+                        }
+                    })
                 }
             }
         }

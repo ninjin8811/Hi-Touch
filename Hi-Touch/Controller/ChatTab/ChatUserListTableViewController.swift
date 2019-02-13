@@ -102,9 +102,14 @@ extension UIImageView{
                     print("チャット相手のユーザー画像をダウンロードできませんでした！")
                 }else{
                     guard let imageData = data else{
-                        return
+                        preconditionFailure("イメージデータがありませんでした！")
                     }
                     
+                    guard let imageToCache = UIImage(data: imageData) else{
+                        preconditionFailure("データをUIImageに変換できませんでした！")
+                    }
+                    
+                    UIImageView.imageCache.setObject(imageToCache, forKey: path as AnyObject)
                 }
             })
         }

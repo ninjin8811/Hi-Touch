@@ -1,4 +1,7 @@
 PODS:
+  - Alamofire (4.8.1)
+  - AlamofireImage (3.5.0):
+    - Alamofire (~> 4.8)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
@@ -91,6 +94,7 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - AlamofireImage (~> 3.5)
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - CodableFirebase (= 0.0.7)
   - Firebase/Auth
@@ -103,6 +107,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireImage
     - CodableFirebase
     - Firebase
     - FirebaseAnalytics
@@ -133,6 +139,8 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ViccAlexander/Chameleon.git
 
 SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   CodableFirebase: 090c5b4c9ad67c9f4fddc3b00d168ec38cad3b14
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
@@ -154,6 +162,6 @@ SPEC CHECKSUMS:
   SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: c5247688994485a641334fbd36c1e91a2b057b00
+PODFILE CHECKSUM: 225eda95d511a4ce5dab4949de95cc89ab637553
 
 COCOAPODS: 1.5.3
