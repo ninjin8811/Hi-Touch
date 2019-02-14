@@ -9,6 +9,8 @@
 import Firebase
 import FirebaseStorage
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class SearchViewController: UITableViewController {
     @IBOutlet var searchTableView: UITableView!
@@ -17,6 +19,7 @@ class SearchViewController: UITableViewController {
     var avatarImages = [UIImage?]()
     var searchedData = [Profile]() {
         didSet {
+            
             initAvatarArray()
             loadAvatarImages()
         }
@@ -92,6 +95,33 @@ class SearchViewController: UITableViewController {
         for i in 0 ... searchedData.count - 1 {
             avatarImages[i] = nil
             
+            
+            let imageCache = AutoPurgingImageCache()
+            
+            guard let imageURL = URL(string: searchedData[i].imageURL) else{
+                preconditionFailure("StringからURLに変換できませんでした！")
+            }
+            let urlRequest = URLRequest(url: imageURL)
+            
+            if let cachedAvatarImage = imageCache.image(for: urlRequest, withIdentifier: searchedData[i].imageURL){
+                print("キャッシュから画像をとってきました！")
+                avatarImages[i] = cachedAvatarImage
+                
+            }else{
+                Alamofire.request(urlRequest).responseImage(completionHandler: { (data) in
+                    if let image = data.result.value{
+                        print("画像をダウンロードしました！")
+                        self.avatarImages[i] = image.af_imageRoundedIntoCircle()
+                        imageCache.add(image, for: urlRequest, withIdentifier: self.searchedData[i].imageURL)
+                        print("画像をキャッシュに追加しました")
+                    }else{
+                        print("画像をダウンロードできませんでした！")
+                    }
+                    self.tableView.reloadData()
+                })
+            }
+            
+
             let imageRef = Storage.storage().reference().child("avatarImages").child("\(searchedData[i].userID).jpg")
             
             imageRef.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in

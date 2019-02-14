@@ -51,7 +51,12 @@ class SetTermsViewController: UIViewController {
                 
                 self.narrowSearchedData(data)
             }
-            self.goToPreviousView()
+            if self.list.count == 0{
+                print("ユーザーを見つけられませんでした！")
+            }else{
+                self.goToPreviousView()
+            }
+            
         })
     }
     
@@ -114,7 +119,9 @@ class SetTermsViewController: UIViewController {
             } else if self.ageTextField.text != "" {
                 self.searchFirebaseDatabase(child: "age", equelValue: self.ageTextField.text!)
                 
-            } else if self.genderTextField.text != "" {}
+            } else if self.genderTextField.text != "" {
+                self.searchFirebaseDatabase(child: "gender", equelValue: self.genderTextField.text!)
+            }
         }
     }
 }

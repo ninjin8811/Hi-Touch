@@ -157,7 +157,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         
         let resizedImage = resizeImage(image: image, width: 480)
         
-        profileImageView.image = resizedImage
+        profileImageView.image = resizedImage.af_imageRoundedIntoCircle()
         
         uploadImage(image: resizedImage)
         
