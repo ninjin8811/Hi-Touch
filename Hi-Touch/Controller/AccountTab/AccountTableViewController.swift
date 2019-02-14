@@ -28,7 +28,6 @@ class AccountTableViewController: UITableViewController {
         
         accountTableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "profileCell")
         loadProfile()
-
     }
     
     /*-----------------------------------------------------------------------------------------*/
@@ -118,9 +117,9 @@ class AccountTableViewController: UITableViewController {
         dataRef.keepSynced(true)
         
         dataRef.observe(DataEventType.value) { snapshot in
-            if snapshot.exists(){
+            if snapshot.exists() {
                 print("データありました")
-                guard let value = snapshot.value else{
+                guard let value = snapshot.value else {
                     return
                 }
                 do {
@@ -128,10 +127,10 @@ class AccountTableViewController: UITableViewController {
                     self.profileData.userID = userID
                     self.downloadImage(with: userID)
                     self.tableView.reloadData()
-                }catch{
+                } catch {
                     preconditionFailure("デコードに失敗しました！")
                 }
-            }else{
+            } else {
                 self.avatarImage = UIImage(named: "profile-default.jpg")
                 print("保存されたデータがありませんでした！")
             }

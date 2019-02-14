@@ -16,7 +16,6 @@ class ProfileCell: UITableViewCell {
     @IBOutlet weak var regionLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

@@ -64,7 +64,7 @@ class ChatUserListTableViewController: UITableViewController {
     }
 }
 
-//extension UIImageView {
+// extension UIImageView {
 //    static let imageCache = NSCache<AnyObject, AnyObject>()
 //
 //    func casheImage(path: String) {
@@ -91,5 +91,4 @@ class ChatUserListTableViewController: UITableViewController {
 //            })
 //        }
 //    }
-//}
-
+// }
