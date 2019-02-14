@@ -9,10 +9,11 @@
 import Foundation
 
 class Profile: Decodable{
+    var gender: String = "男"
     var name: String = "吉野 史也"
     var team: String = "Liverpool"
     var age: String = "22"
     var region: String = "Osaka"
     var userID: String = "default"
-    var imageURL: String = ""
+    var imageURL: String = "default"
 }

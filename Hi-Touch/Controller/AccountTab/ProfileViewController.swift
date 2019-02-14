@@ -19,6 +19,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var teamTextField: UITextField!
     @IBOutlet weak var regionTextField: UITextField!
+    @IBOutlet weak var genderTextField: UITextField!
     
     
     
@@ -70,8 +71,9 @@ class ProfileViewController: UIViewController {
         let age = checkEmpty(checkValue: ageTextField.text!)
         let team = checkEmpty(checkValue: teamTextField.text!)
         let region = checkEmpty(checkValue: regionTextField.text!)
+        let gender = checkEmpty(checkValue: genderTextField.text!)
 
-        let profileDictionary = ["name": name, "age": age, "team": team, "region": region, "userID": Auth.auth().currentUser?.uid, "imageURL": profileData.imageURL]
+        let profileDictionary = ["gender": gender, name: name, "age": age, "team": team, "region": region, "userID": Auth.auth().currentUser?.uid, "imageURL": profileData.imageURL]
         
         proDataRef.setValue(profileDictionary) { (error, reference) in
             
