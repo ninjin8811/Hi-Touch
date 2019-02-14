@@ -7,7 +7,7 @@
 //
 
 import Firebase
-// import RealmSwift
+import RealmSwift
 import UIKit
 
 @UIApplicationMain
@@ -18,12 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true
         
-//        do {
-//            _ = try Realm()
-//        } catch {
-//            print("Error: \(error)")
-//        }
-//
+        do {
+            _ = try Realm()
+        } catch {
+            print("Error: \(error)")
+        }
+
         return true
     }
     

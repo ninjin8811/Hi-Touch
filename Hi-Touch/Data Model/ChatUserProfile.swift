@@ -13,7 +13,7 @@ class ChatUserProfile: Object {
     @objc dynamic var name = "name"
     @objc dynamic var recentMessage = "message"
     @objc dynamic var time = "time"
-    @objc dynamic var imagePath: String?
+    @objc dynamic var imageURL = "default"
     
     let messages = List<Messages>()
 }

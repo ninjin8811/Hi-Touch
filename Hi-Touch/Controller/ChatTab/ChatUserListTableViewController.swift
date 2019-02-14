@@ -11,8 +11,8 @@ import RealmSwift
 import UIKit
 
 class ChatUserListTableViewController: UITableViewController {
-//    let realm = try! Realm()
-//    var users: Results<ChatUserProfile>?
+    let realm = try! Realm()
+    var users: Results<ChatUserProfile>?
     
     var addedUsername = "name"
     var avatarImage: UIImage? {
@@ -63,6 +63,13 @@ class ChatUserListTableViewController: UITableViewController {
         if segue.identifier == "goToChat" {}
     }
 }
+
+
+
+
+
+
+
 
 // extension UIImageView {
 //    static let imageCache = NSCache<AnyObject, AnyObject>()
