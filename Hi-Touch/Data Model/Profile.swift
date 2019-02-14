@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Profile: Decodable{
+class Profile: Decodable {
     var gender: String = "男"
     var name: String = "吉野 史也"
     var team: String = "Liverpool"

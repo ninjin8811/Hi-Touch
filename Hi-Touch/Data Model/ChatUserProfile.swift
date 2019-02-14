@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class ChatUserProfile: Object{
+class ChatUserProfile: Object {
     @objc dynamic var name = "name"
     @objc dynamic var recentMessage = "message"
     @objc dynamic var time = "time"

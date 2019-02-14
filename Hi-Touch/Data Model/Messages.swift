@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class Messages: Object{
+class Messages: Object {
     @objc dynamic var message: String?
     @objc dynamic var timeCreated: Date?
     

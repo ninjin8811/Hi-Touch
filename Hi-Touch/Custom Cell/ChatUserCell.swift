@@ -9,22 +9,16 @@
 import UIKit
 
 class ChatUserCell: UITableViewCell {
-    
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-
     }
-
 }

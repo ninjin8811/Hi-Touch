@@ -38,6 +38,8 @@
 /* Begin PBXFileReference section */
 		2D02217ABFC872A0FBD96656 /* Pods-Hi-Touch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hi-Touch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hi-Touch/Pods-Hi-Touch.debug.xcconfig"; sourceTree = "<group>"; };
 		9A0B61622205939C006A395A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9A1A2B6B2214FEAE0046640C /* Hi_TouchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hi_TouchTests.swift; sourceTree = "<group>"; };
+		9A1A2B6D2214FEAE0046640C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A5372FB2206E8BB00C98EC5 /* ProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
 		9A5372FF2206F30B00C98EC5 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		9A537302220757AF00C98EC5 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -95,6 +97,15 @@
 				BC16082C9764466BFC0A5C35 /* Pods_Hi_Touch.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A1A2B6A2214FEAE0046640C /* Hi-TouchTests */ = {
+			isa = PBXGroup;
+			children = (
+				9A1A2B6B2214FEAE0046640C /* Hi_TouchTests.swift */,
+				9A1A2B6D2214FEAE0046640C /* Info.plist */,
+			);
+			path = "Hi-TouchTests";
 			sourceTree = "<group>";
 		};
 		9A5372FA2206E85100C98EC5 /* Custom Cell */ = {
@@ -163,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				9A73D3BE2205685E00D4A918 /* Hi-Touch */,
+				9A1A2B6A2214FEAE0046640C /* Hi-TouchTests */,
 				9A73D3BD2205685E00D4A918 /* Products */,
 				27FA740A304E9B605829D9B1 /* Pods */,
 				6ACE9346F11395EDD0C7E182 /* Frameworks */,

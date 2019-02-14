@@ -6,26 +6,23 @@
 //  Copyright © 2019年 yoshinofumiya. All rights reserved.
 //
 
-import UIKit
 import Firebase
 import SVProgressHUD
+import UIKit
 
 class RegisterViewController: UIViewController {
-
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     @IBAction func RegisterButtonPressed(_ sender: UIButton) {
-        
         SVProgressHUD.show()
         
-        Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (result, error) in
-            if error != nil{
-                
+        Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { _, error in
+            if error != nil {
                 SVProgressHUD.dismiss()
                 
                 let alert = UIAlertController(title: "エラー", message: "メールアドレスかパスワードが有効ではありません", preferredStyle: .alert)
@@ -36,12 +33,11 @@ class RegisterViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
                 
                 print("Could not sign in: \(String(describing: error))")
-            }else{
-                
-                Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
-                    if error != nil{
+            } else {
+                Auth.auth().currentUser?.sendEmailVerification(completion: { error in
+                    if error != nil {
                         print("Could not send Email!")
-                    }else{
+                    } else {
                         print("Sent Message!!")
                     }
                 })

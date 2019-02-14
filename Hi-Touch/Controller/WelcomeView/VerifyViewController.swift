@@ -6,18 +6,16 @@
 //  Copyright © 2019年 yoshinofumiya. All rights reserved.
 //
 
-import UIKit
 import Firebase
 import SVProgressHUD
+import UIKit
 
 class VerifyViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func verifyButtonPressed(_ sender: UIButton) {
-        
 //        SVProgressHUD.show()
 //
 //        if Auth.auth().currentUser?.isEmailVerified == true{
@@ -39,11 +37,10 @@ class VerifyViewController: UIViewController {
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
-        
-        Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
-            if error != nil{
+        Auth.auth().currentUser?.sendEmailVerification(completion: { error in
+            if error != nil {
                 print("Could not send Email")
-            }else{
+            } else {
                 print("Sent Message!!")
             }
         })
