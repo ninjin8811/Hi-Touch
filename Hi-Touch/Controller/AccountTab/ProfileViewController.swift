@@ -33,6 +33,7 @@ class ProfileViewController: UIViewController {
         ageTextField.text = profileData.age
         teamTextField.text = profileData.team
         regionTextField.text = profileData.region
+        genderTextField.text = profileData.gender
         
         if let image = avatarImage {
             profileImageView.image = image
@@ -68,7 +69,7 @@ class ProfileViewController: UIViewController {
         let region = checkEmpty(checkValue: regionTextField.text!)
         let gender = checkEmpty(checkValue: genderTextField.text!)
         
-        let profileDictionary = ["gender": gender, name: name, "age": age, "team": team, "region": region, "userID": Auth.auth().currentUser?.uid, "imageURL": profileData.imageURL]
+        let profileDictionary = ["gender": gender, "name": name, "age": age, "team": team, "region": region, "userID": Auth.auth().currentUser?.uid, "imageURL": profileData.imageURL]
         
         proDataRef.setValue(profileDictionary) { error, _ in
             

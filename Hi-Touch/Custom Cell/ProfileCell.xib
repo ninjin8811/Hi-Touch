@@ -105,6 +105,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="ageLabel" destination="FNk-p6-Zk1" id="yTM-dI-6xh"/>
+                <outlet property="genderLabel" destination="m88-br-bMd" id="q4r-6j-4dA"/>
                 <outlet property="nameLabel" destination="QeJ-bv-faw" id="GXJ-uj-7EZ"/>
                 <outlet property="profileImageView" destination="R0N-cR-eg1" id="OH6-8x-1AY"/>
                 <outlet property="regionLabel" destination="k19-FB-gSP" id="tC3-sd-GQZ"/>

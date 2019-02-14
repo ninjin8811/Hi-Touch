@@ -28,6 +28,7 @@ class AccountTableViewController: UITableViewController {
         
         accountTableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "profileCell")
         loadProfile()
+
     }
     
     /*-----------------------------------------------------------------------------------------*/
@@ -63,6 +64,7 @@ class AccountTableViewController: UITableViewController {
             profileCell.ageLabel.text = profileData.age
             profileCell.regionLabel.text = profileData.region
             profileCell.teamLabel.text = profileData.team
+            profileCell.genderLabel.text = profileData.gender
             profileCell.profileImageView.image = avatarImage
             
             return profileCell
@@ -81,9 +83,6 @@ class AccountTableViewController: UITableViewController {
         if indexPath == [0, 0] {
             performSegue(withIdentifier: "goToProfileSetting", sender: self)
         }
-        
-        print("選択されたインデックスパス:\(indexPath)")
-        print("indexpath.row:\(indexPath.row)")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -115,20 +114,28 @@ class AccountTableViewController: UITableViewController {
         }
         
         dataRef = Database.database().reference().child("users").child(userID)
+        
         dataRef.keepSynced(true)
         
         dataRef.observe(DataEventType.value) { snapshot in
-            
-            if let value = snapshot.value {
+            if snapshot.exists(){
+                print("データありました")
+                guard let value = snapshot.value else{
+                    return
+                }
                 do {
-                    self.profileData = try! FirebaseDecoder().decode(Profile.self, from: value)
+                    self.profileData = try FirebaseDecoder().decode(Profile.self, from: value)
                     self.profileData.userID = userID
                     self.downloadImage(with: userID)
                     self.tableView.reloadData()
+                }catch{
+                    preconditionFailure("デコードに失敗しました！")
                 }
-            } else {
-                print("プロフィールを取得できませんでした")
+            }else{
+                self.avatarImage = UIImage(named: "profile-default.jpg")
+                print("保存されたデータがありませんでした！")
             }
+            self.tableView.reloadData()
         }
     }
     
@@ -143,7 +150,6 @@ class AccountTableViewController: UITableViewController {
             
             if error != nil {
                 print("画像を取得できませんでした！")
-                self.avatarImage = UIImage(named: "profile-default.jpg")
             } else {
                 print("画像をダウンロードしました！")
                 
