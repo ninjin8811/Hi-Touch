@@ -18,9 +18,17 @@ class SetTermsViewController: UIViewController {
     
     let dataRef = Database.database().reference().child("users")
     var list = [Profile]()
+    var userID: String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let uid = Auth.auth().currentUser?.uid{
+            userID = uid
+        }else{
+            print("ユーザーIDが取得できませんでした")
+        }
     }
     
     /*-----------------------------------------------------------------------------------------*/
@@ -48,11 +56,15 @@ class SetTermsViewController: UIViewController {
     }
     
     func narrowSearchedData(_ value: Profile) {
-//        if genderTextField.text! != ""{
-//            if genderTextField.text! != value.gender{
-//                return
-//            }
-//        }
+        
+        if value.userID == userID{
+            return
+        }
+        if genderTextField.text! != ""{
+            if genderTextField.text! != value.gender{
+                return
+            }
+        }
         if ageTextField.text! != "" {
             if ageTextField.text! != value.age {
                 return
@@ -68,13 +80,6 @@ class SetTermsViewController: UIViewController {
                 return
             }
         }
-        
-//        let addUser = Profile()
-//        addUser.age = value["age"]!
-//        addUser.name = value["name"]!
-//        addUser.region = value["region"]!
-//        addUser.team = value["team"]!
-//        addUser.userID = value["userID"]!
         
         list.append(value)
     }

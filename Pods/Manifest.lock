@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (4.8.1)
-  - AlamofireImage (3.5.0):
-    - Alamofire (~> 4.8)
+  - AlamofireImage (3.4.0):
+    - Alamofire (~> 4.7)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
@@ -96,7 +96,7 @@ PODS:
   - SwiftLint (0.30.1)
 
 DEPENDENCIES:
-  - AlamofireImage (~> 3.5)
+  - AlamofireImage (= 3.4.0)
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - CodableFirebase (= 0.0.7)
   - Firebase/Auth
@@ -146,7 +146,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
+  AlamofireImage: 5f79836de27236819b13b27d0c97be6c205976fe
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   CodableFirebase: 090c5b4c9ad67c9f4fddc3b00d168ec38cad3b14
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
@@ -170,6 +170,6 @@ SPEC CHECKSUMS:
   SwiftFormat: 0762bc591b9f6e8efa99402e714a03ede5151656
   SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
 
-PODFILE CHECKSUM: caba9b6e6178c4eb172424f429771b97760e428c
+PODFILE CHECKSUM: 8166d84981c844bd177e44a4c5f26c2543f902a8
 
 COCOAPODS: 1.5.3

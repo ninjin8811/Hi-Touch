@@ -11,6 +11,7 @@ import Firebase
 import FirebaseStorage
 import SVProgressHUD
 import UIKit
+import AlamofireImage
 
 class ProfileViewController: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
@@ -35,7 +36,7 @@ class ProfileViewController: UIViewController {
         regionTextField.text = profileData.region
         genderTextField.text = profileData.gender
         
-        if let image = avatarImage {
+        if let image = avatarImage{
             profileImageView.image = image
         }
     }

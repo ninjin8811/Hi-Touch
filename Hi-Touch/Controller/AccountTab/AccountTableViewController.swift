@@ -12,6 +12,8 @@ import FirebaseStorage
 import FirebaseUI
 import SVProgressHUD
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class AccountTableViewController: UITableViewController {
     var dataRef = Database.database().reference()
@@ -25,7 +27,8 @@ class AccountTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let path: String = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
+        print(path)
         accountTableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "profileCell")
         loadProfile()
     }
@@ -118,7 +121,6 @@ class AccountTableViewController: UITableViewController {
         
         dataRef.observe(DataEventType.value) { snapshot in
             if snapshot.exists() {
-                print("データありました")
                 guard let value = snapshot.value else {
                     return
                 }
@@ -139,28 +141,45 @@ class AccountTableViewController: UITableViewController {
     }
     
     func downloadImage(with userID: String) {
-        SVProgressHUD.show()
-        
-        let imageRef = Storage.storage().reference().child("avatarImages").child("\(userID).jpg")
-        
-//        avatarImage.sd_setImage(with: imageRef)
-        
-        imageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-            
-            if error != nil {
-                print("画像を取得できませんでした！")
-            } else {
-                print("画像をダウンロードしました！")
-                
-                guard let imageData = data else {
-                    return
-                }
-                self.avatarImage = UIImage(data: imageData)
-                
-                self.tableView.reloadData()
-            }
+//        let downloader = ImageDownloader()
+        let imageCache = AutoPurgingImageCache()
+
+        guard let imageURL = URL(string: profileData.imageURL) else{
+            preconditionFailure("StringからURLに変換できませんでした！")
         }
-        SVProgressHUD.dismiss()
+        let urlRequest = URLRequest(url: imageURL)
+        
+        if let cachedAvatarImage = imageCache.image(for: urlRequest, withIdentifier: profileData.imageURL){
+            print("キャッシュから画像をとってきました！")
+            avatarImage = cachedAvatarImage
+            
+        }else{
+//            downloader.download(urlRequest, completion: { (data) in
+//                                if let image = data.result.value{
+//                                    print("画像をダウンロードしました！")
+//                                    self.avatarImage = image
+//                                    imageCache.add(image, for: urlRequest, withIdentifier: self.profileData.imageURL)
+//                                    print("画像をキャッシュに追加しました")
+//                                }else{
+//                                    print("画像をダウンロードできませんでした！")
+//                                }
+//                                self.tableView.reloadData()
+//
+//            })
+            Alamofire.request(urlRequest).responseImage(completionHandler: { (data) in
+                if let image = data.result.value{
+                    print("画像をダウンロードしました！")
+                    self.avatarImage = image.af_imageRoundedIntoCircle()
+                    imageCache.add(image, for: urlRequest, withIdentifier: self.profileData.imageURL)
+                    print("画像をキャッシュに追加しました")
+                }else{
+                    print("画像をダウンロードできませんでした！")
+                }
+                self.tableView.reloadData()
+            })
+        }
+        
+        self.tableView.reloadData()
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
@@ -172,3 +191,4 @@ class AccountTableViewController: UITableViewController {
         }
     }
 }
+
