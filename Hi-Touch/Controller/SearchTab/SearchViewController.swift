@@ -52,6 +52,7 @@ class SearchViewController: UITableViewController {
         cell.nameLabel.text = searchedData[indexPath.row].name
         cell.regionLabel.text = searchedData[indexPath.row].region
         cell.teamLabel.text = searchedData[indexPath.row].team
+        cell.genderLabel.text = searchedData[indexPath.row].gender
         
         if let image = avatarImages[indexPath.row] {
             cell.profileImageView.image = image
@@ -120,22 +121,6 @@ class SearchViewController: UITableViewController {
                     self.tableView.reloadData()
                 })
             }
-            
-
-            let imageRef = Storage.storage().reference().child("avatarImages").child("\(searchedData[i].userID).jpg")
-            
-            imageRef.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
-                
-                if error == nil {
-                    guard let imageData = data else {
-                        return
-                    }
-                    
-                    self.avatarImages[i] = UIImage(data: imageData)
-                    
-                    self.tableView.reloadData()
-                }
-            })
         }
     }
 }

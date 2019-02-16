@@ -141,6 +141,7 @@ class AccountTableViewController: UITableViewController {
     }
     
     func downloadImage(with userID: String) {
+        
 //        let downloader = ImageDownloader()
         let imageCache = AutoPurgingImageCache()
 
@@ -148,11 +149,11 @@ class AccountTableViewController: UITableViewController {
             preconditionFailure("StringからURLに変換できませんでした！")
         }
         let urlRequest = URLRequest(url: imageURL)
-        
+
         if let cachedAvatarImage = imageCache.image(for: urlRequest, withIdentifier: profileData.imageURL){
             print("キャッシュから画像をとってきました！")
             avatarImage = cachedAvatarImage
-            
+
         }else{
 //            downloader.download(urlRequest, completion: { (data) in
 //                                if let image = data.result.value{
@@ -178,9 +179,9 @@ class AccountTableViewController: UITableViewController {
                 self.tableView.reloadData()
             })
         }
-        
-        self.tableView.reloadData()
     }
+    
+    
     
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         do {
@@ -191,4 +192,3 @@ class AccountTableViewController: UITableViewController {
         }
     }
 }
-

@@ -16,9 +16,10 @@ pod 'SVProgressHUD'
 pod ‘Firebase/Storage’
 pod 'FirebaseUI/Storage'
 pod 'CodableFirebase’,‘0.0.7’
-pod 'AlamofireImage', ‘3.4.0’
-pod 'SwiftLint'
+pod 'AlamofireImage', '~> 3.5'
 pod 'SwiftFormat/CLI'
+pod 'SwiftLint'
+pod ‘Nuke’
 
 
 end

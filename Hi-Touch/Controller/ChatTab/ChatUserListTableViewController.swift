@@ -11,6 +11,7 @@ import RealmSwift
 import UIKit
 
 class ChatUserListTableViewController: UITableViewController {
+    
     let realm = try! Realm()
     var users: Results<ChatUserProfile>?
     
@@ -28,12 +29,19 @@ class ChatUserListTableViewController: UITableViewController {
         userListTableView.register(UINib(nibName: "ChatUserCell", bundle: nil), forCellReuseIdentifier: "userCell")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        loadUsers()
+    }
+    
     /*-----------------------------------------------------------------------------------------*/
     
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        guard let count = users?.count else{
+            return 1
+        }
+        return count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,10 +56,10 @@ class ChatUserListTableViewController: UITableViewController {
     
     // MARK: Data Manipulate Methods
     
-//    func loadUsers() {
-//        users = realm.objects(ChatUserProfile.self)
-//        tableView.reloadData()
-//    }
+    func loadUsers() {
+        users = realm.objects(ChatUserProfile.self)
+        tableView.reloadData()
+    }
     
     func save() {}
     

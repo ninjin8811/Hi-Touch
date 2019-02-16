@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (4.8.1)
-  - AlamofireImage (3.4.0):
-    - Alamofire (~> 4.7)
+  - AlamofireImage (3.5.0):
+    - Alamofire (~> 4.8)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
@@ -83,6 +83,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - Nuke (7.5.2)
   - Realm (3.13.1):
     - Realm/Headers (= 3.13.1)
   - Realm/Headers (3.13.1)
@@ -96,7 +97,7 @@ PODS:
   - SwiftLint (0.30.1)
 
 DEPENDENCIES:
-  - AlamofireImage (= 3.4.0)
+  - AlamofireImage (~> 3.5)
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - CodableFirebase (= 0.0.7)
   - Firebase/Auth
@@ -104,6 +105,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - FirebaseUI/Storage
+  - Nuke
   - RealmSwift
   - SVProgressHUD
   - SwiftFormat/CLI
@@ -128,6 +130,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - Nuke
     - Realm
     - RealmSwift
     - SDWebImage
@@ -146,7 +149,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  AlamofireImage: 5f79836de27236819b13b27d0c97be6c205976fe
+  AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   CodableFirebase: 090c5b4c9ad67c9f4fddc3b00d168ec38cad3b14
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
@@ -163,6 +166,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Nuke: 0350d346a688426e8f2331253ef28dc2fc4f6178
   Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
   RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
   SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
@@ -170,6 +174,6 @@ SPEC CHECKSUMS:
   SwiftFormat: 0762bc591b9f6e8efa99402e714a03ede5151656
   SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
 
-PODFILE CHECKSUM: 8166d84981c844bd177e44a4c5f26c2543f902a8
+PODFILE CHECKSUM: 17a50922c2208bcb9a0313589d2f46ee110df20f
 
 COCOAPODS: 1.5.3
