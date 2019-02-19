@@ -17,6 +17,7 @@
 		9A5F72AA2212CDF400477B69 /* ChatUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F72A92212CDF400477B69 /* ChatUserCell.swift */; };
 		9A5F72B22212D10700477B69 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F72B12212D10700477B69 /* ChatTableViewController.swift */; };
 		9A5F72B42212D12700477B69 /* ChatUserListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F72B32212D12700477B69 /* ChatUserListTableViewController.swift */; };
+		9A6026A222181726007F77C4 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6026A122181726007F77C4 /* PickerTextField.swift */; };
 		9A6CEABC2206A29900FD37FB /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6CEABB2206A29900FD37FB /* VerifyViewController.swift */; };
 		9A6CEAC02206B59E00FD37FB /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6CEABF2206B59E00FD37FB /* AccountTableViewController.swift */; };
 		9A73D3C02205685E00D4A918 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A73D3BF2205685E00D4A918 /* AppDelegate.swift */; };
@@ -48,6 +49,7 @@
 		9A5F72A92212CDF400477B69 /* ChatUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUserCell.swift; sourceTree = "<group>"; };
 		9A5F72B12212D10700477B69 /* ChatTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
 		9A5F72B32212D12700477B69 /* ChatUserListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUserListTableViewController.swift; sourceTree = "<group>"; };
+		9A6026A122181726007F77C4 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		9A6CEABB2206A29900FD37FB /* VerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
 		9A6CEABF2206B59E00FD37FB /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		9A73D3BC2205685E00D4A918 /* Hi-Touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hi-Touch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,6 +214,7 @@
 				9A5F72AD2212D06800477B69 /* SearchTab */,
 				9A5F72AC2212D04E00477B69 /* AccountTab */,
 				9A5F72AB2212D04300477B69 /* WelcomeView */,
+				9A6026A122181726007F77C4 /* PickerTextField.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -228,7 +231,6 @@
 				9A73D3B92205685E00D4A918 /* Frameworks */,
 				9A73D3BA2205685E00D4A918 /* Resources */,
 				F81BEBEBBA23CD98359E9686 /* [CP] Embed Pods Frameworks */,
-				9A0E1AB62218098800FE12F1 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -309,20 +311,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9A0E1AB62218098800FE12F1 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
-		};
 		F81BEBEBBA23CD98359E9686 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -332,15 +320,19 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Hi-Touch/Pods-Hi-Touch-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/CodableFirebase/CodableFirebase.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -348,15 +340,19 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CodableFirebase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -381,6 +377,7 @@
 				9AB5637D2205807C00BAA0B2 /* WelcomeViewController.swift in Sources */,
 				9AA1FB2F220EE3640000AEE7 /* SetTermsViewController.swift in Sources */,
 				9A537303220757AF00C98EC5 /* Profile.swift in Sources */,
+				9A6026A222181726007F77C4 /* PickerTextField.swift in Sources */,
 				9A73D3C02205685E00D4A918 /* AppDelegate.swift in Sources */,
 				9A5F72B42212D12700477B69 /* ChatUserListTableViewController.swift in Sources */,
 				9A6CEAC02206B59E00FD37FB /* AccountTableViewController.swift in Sources */,

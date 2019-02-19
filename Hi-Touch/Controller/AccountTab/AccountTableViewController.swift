@@ -8,6 +8,7 @@
 
 import CodableFirebase
 import Firebase
+import FirebaseFirestore
 import FirebaseStorage
 import FirebaseUI
 import SVProgressHUD
@@ -16,7 +17,8 @@ import Alamofire
 import AlamofireImage
 
 class AccountTableViewController: UITableViewController {
-    var dataRef = Database.database().reference()
+//    var dataRef = Database.database().reference()
+    var db: Firestore!
     
     @IBOutlet var accountTableView: UITableView!
     
@@ -24,11 +26,17 @@ class AccountTableViewController: UITableViewController {
     let secondArray = ["予定", "フレンド", "お気に入り", "アカウント設定"]
     let sectionTitle = ["プロフィール", "アカウント情報"]
     var avatarImage: UIImage?
+    var userID = "default"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let path: String = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
-        print(path)
+        
+        if let id = Auth.auth().currentUser?.uid {
+            userID = id
+        } else {
+            print("ユーザーIDを取得できませんでした！")
+        }
+        db = Firestore.firestore()
         accountTableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "profileCell")
         loadProfile()
     }
@@ -95,7 +103,8 @@ class AccountTableViewController: UITableViewController {
         if segueIdentifier == "goToProfileSetting" {
             let destinationVC = segue.destination as! ProfileViewController
             destinationVC.hidesBottomBarWhenPushed = true
-            destinationVC.proDataRef = dataRef
+//            destinationVC.proDataRef = dataRef
+            destinationVC.userID = userID
             destinationVC.profileData = profileData
             
             if let image = avatarImage {
@@ -111,33 +120,60 @@ class AccountTableViewController: UITableViewController {
     // MARK: - Data Manipulate Methods
     
     func loadProfile() {
-        guard let userID = Auth.auth().currentUser?.uid else {
-            fatalError()
-        }
+        print("データをロードします！")
         
-        dataRef = Database.database().reference().child("users").child(userID)
+        let settings = FirestoreSettings()
+        settings.isPersistenceEnabled = true
+        db.settings = settings
         
-        dataRef.keepSynced(true)
+//        dataRef = Database.database().reference().child("users").child(userID)
+//        dataRef.keepSynced(true)
         
-        dataRef.observe(DataEventType.value) { snapshot in
-            if snapshot.exists() {
-                guard let value = snapshot.value else {
-                    return
-                }
-                do {
-                    self.profileData = try FirebaseDecoder().decode(Profile.self, from: value)
-                    self.profileData.userID = userID
-                    self.downloadImage(with: userID)
-                    self.tableView.reloadData()
-                } catch {
-                    preconditionFailure("デコードに失敗しました！")
-                }
+        db.collection("users").document(userID).getDocument { (snapshot, error) in
+            if error != nil {
+                print("データの取得に失敗しました！")
             } else {
-                self.avatarImage = UIImage(named: "profile-default.jpg")
-                print("保存されたデータがありませんでした！")
+                guard let snap = snapshot else {
+                    preconditionFailure("データがありませんでした！")
+                }
+                if snap.exists {
+                    //When User Data Exist
+                    guard let value = snap.data() else {
+                        preconditionFailure("取得したスナップショットにデータがありませんでした！")
+                    }
+                    do {
+                        print(value)
+                        self.profileData = try FirestoreDecoder().decode(Profile.self, from: value)
+                        self.downloadImage(with: self.userID)
+                        self.tableView.reloadData()
+                    } catch {
+                        print("取得したデータのデコードに失敗しました！")
+                    }
+                } else {
+                    //User data was not exist
+                    print("ドキュメントにデータがありませんでした！")
+                }
             }
-            self.tableView.reloadData()
         }
+//        dataRef.observe(DataEventType.value) { snapshot in
+//            if snapshot.exists() {
+//                guard let value = snapshot.value else {
+//                    return
+//                }
+//                do {
+//                    self.profileData = try FirebaseDecoder().decode(Profile.self, from: value)
+//                    self.profileData.userID = userID
+//                    self.downloadImage(with: userID)
+//                    self.tableView.reloadData()
+//                } catch {
+//                    preconditionFailure("デコードに失敗しました！")
+//                }
+//            } else {
+//                self.avatarImage = UIImage(named: "profile-default.jpg")
+//                print("保存されたデータがありませんでした！")
+//            }
+//            self.tableView.reloadData()
+//        }
     }
     
     func downloadImage(with userID: String) {

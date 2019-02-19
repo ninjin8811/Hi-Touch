@@ -9,6 +9,7 @@
 import CodableFirebase
 import Firebase
 import FirebaseStorage
+import FirebaseFirestore
 import SVProgressHUD
 import UIKit
 import AlamofireImage
@@ -22,7 +23,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var genderTextField: UITextField!
     
     var profileData = Profile()
-    var proDataRef = Database.database().reference()
+//    var proDataRef = Database.database().reference()
+    var db = Firestore.firestore()
+    var userID: String?
     var avatarImage: UIImage?
     
     override func viewDidLoad() {
@@ -70,16 +73,28 @@ class ProfileViewController: UIViewController {
         let region = checkEmpty(checkValue: regionTextField.text!)
         let gender = checkEmpty(checkValue: genderTextField.text!)
         
-        let profileDictionary = ["gender": gender, "name": name, "age": age, "team": team, "region": region, "userID": Auth.auth().currentUser?.uid, "imageURL": profileData.imageURL]
+        guard let uid = userID else {
+            preconditionFailure("ユーザーIDが渡されてませんでした！")
+        }
         
-        proDataRef.setValue(profileDictionary) { error, _ in
-            
+        let profileDictionary: [String: Any] = ["gender": gender, "name": name, "age": age, "team": team, "region": region, "userID": uid, "imageURL": profileData.imageURL]
+        
+        db.collection("users").document(uid).setData(profileDictionary) { (error) in
             if error != nil {
                 print("セーブできませんでした！")
             } else {
                 print("セーブできました！")
             }
         }
+        
+//        proDataRef.setValue(profileDictionary) { error, _ in
+//
+//            if error != nil {
+//                print("セーブできませんでした！")
+//            } else {
+//                print("セーブできました！")
+//            }
+//        }
     }
     
     func uploadImage(image: UIImage) {

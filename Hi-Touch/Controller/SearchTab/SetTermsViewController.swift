@@ -10,7 +10,8 @@ import CodableFirebase
 import Firebase
 import UIKit
 
-class SetTermsViewController: UIViewController {
+class SetTermsViewController: UIViewController{
+    
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var teamTextField: UITextField!
@@ -19,7 +20,8 @@ class SetTermsViewController: UIViewController {
     let dataRef = Database.database().reference().child("users")
     var list = [Profile]()
     var userID: String?
-    
+    let gender = ["男", "女", "他"]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,7 @@ class SetTermsViewController: UIViewController {
             print("ユーザーIDが取得できませんでした")
         }
     }
+    
     
     /*-----------------------------------------------------------------------------------------*/
     // Search User Methods
