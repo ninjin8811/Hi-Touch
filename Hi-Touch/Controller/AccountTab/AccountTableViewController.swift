@@ -15,6 +15,7 @@ import SVProgressHUD
 import UIKit
 import Alamofire
 import AlamofireImage
+import Nuke
 
 class AccountTableViewController: UITableViewController {
 //    var dataRef = Database.database().reference()
@@ -25,7 +26,11 @@ class AccountTableViewController: UITableViewController {
     var profileData = Profile()
     let secondArray = ["予定", "フレンド", "お気に入り", "アカウント設定"]
     let sectionTitle = ["プロフィール", "アカウント情報"]
-    var avatarImage: UIImage?
+    var avatarImage = UIImage(named: "profile-default")?.af_imageRoundedIntoCircle() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var userID = "default"
     
     override func viewDidLoad() {
@@ -38,6 +43,7 @@ class AccountTableViewController: UITableViewController {
         }
         db = Firestore.firestore()
         accountTableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "profileCell")
+        DataLoader.sharedUrlCache.diskCapacity = 0 //Disable the default disk cache
         loadProfile()
     }
     
@@ -142,12 +148,16 @@ class AccountTableViewController: UITableViewController {
                         preconditionFailure("取得したスナップショットにデータがありませんでした！")
                     }
                     do {
-                        print(value)
+                        print("データをロードしました！")
                         self.profileData = try FirestoreDecoder().decode(Profile.self, from: value)
                         self.downloadImage(with: self.userID)
                         self.tableView.reloadData()
                     } catch {
                         print("取得したデータのデコードに失敗しました！")
+                    }
+                    //if fetched Data from cache
+                    if snap.metadata.isFromCache {
+                        print("キャッシュからデータをロードしました！")
                     }
                 } else {
                     //User data was not exist
@@ -177,13 +187,28 @@ class AccountTableViewController: UITableViewController {
     }
     
     func downloadImage(with userID: String) {
-        
-//        let downloader = ImageDownloader()
-        let imageCache = AutoPurgingImageCache()
-
         guard let imageURL = URL(string: profileData.imageURL) else{
             preconditionFailure("StringからURLに変換できませんでした！")
         }
+        // 1
+        DataLoader.sharedUrlCache.diskCapacity = 0
+        
+        let pipeline = ImagePipeline {
+            // 2
+            let dataCache = try! DataCache(name: "com.hi-touch.datacache", filenameGenerator: {
+                print($0.sha1)
+                return $0.sha1
+            })
+            // 3
+            dataCache.sizeLimit = 200 * 1024 * 1024
+            
+            // 4
+            $0.dataCache = dataCache
+        }
+        
+        // 5
+        ImagePipeline.shared = pipeline
+
         let urlRequest = URLRequest(url: imageURL)
 
         if let cachedAvatarImage = imageCache.image(for: urlRequest, withIdentifier: profileData.imageURL){
@@ -191,28 +216,21 @@ class AccountTableViewController: UITableViewController {
             avatarImage = cachedAvatarImage
 
         }else{
-//            downloader.download(urlRequest, completion: { (data) in
-//                                if let image = data.result.value{
-//                                    print("画像をダウンロードしました！")
-//                                    self.avatarImage = image
-//                                    imageCache.add(image, for: urlRequest, withIdentifier: self.profileData.imageURL)
-//                                    print("画像をキャッシュに追加しました")
-//                                }else{
-//                                    print("画像をダウンロードできませんでした！")
-//                                }
-//                                self.tableView.reloadData()
-//
-//            })
-            Alamofire.request(urlRequest).responseImage(completionHandler: { (data) in
-                if let image = data.result.value{
-                    print("画像をダウンロードしました！")
-                    self.avatarImage = image.af_imageRoundedIntoCircle()
-                    imageCache.add(image, for: urlRequest, withIdentifier: self.profileData.imageURL)
-                    print("画像をキャッシュに追加しました")
-                }else{
+            guard let imageURL = URL(string: profileData.imageURL) else {
+                preconditionFailure("ダウンロードURLの変換に失敗しました")
+            }
+            let request = ImageRequest(url: imageURL, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFill)
+            Nuke.ImagePipeline.shared.loadImage(with: request, progress: nil, completion: { (data, error) in
+                if error != nil {
                     print("画像をダウンロードできませんでした！")
+                    self.avatarImage = UIImage(named: "alien")?.af_imageRoundedIntoCircle()
+                } else {
+                    print("画像をダウンロードしました！")
+                    guard let image = data?.image else {
+                        preconditionFailure("ダウンロードデータに画像がありませんでした！")
+                    }
+                    self.avatarImage = image.af_imageRoundedIntoCircle()
                 }
-                self.tableView.reloadData()
             })
         }
     }
