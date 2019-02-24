@@ -10,18 +10,16 @@ import CodableFirebase
 import Firebase
 import FirebaseFirestore
 import FirebaseStorage
-import FirebaseUI
 import SVProgressHUD
 import UIKit
-import Alamofire
 import AlamofireImage
 import Nuke
 
 class AccountTableViewController: UITableViewController {
-    var db: Firestore!
     
     @IBOutlet var accountTableView: UITableView!
     
+    var db: Firestore!
     var profileData = Profile()
     let secondArray = ["予定", "フレンド", "お気に入り", "アカウント設定"]
     let sectionTitle = ["プロフィール", "アカウント情報"]
@@ -144,8 +142,6 @@ class AccountTableViewController: UITableViewController {
     // MARK: - Data Manipulate Methods
     
     func loadProfile() {
-        print("データをロードします！")
-        
         let settings = FirestoreSettings()
         settings.isPersistenceEnabled = true
         db.settings = settings
@@ -210,6 +206,8 @@ class AccountTableViewController: UITableViewController {
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         do {
             try Auth.auth().signOut()
+            let ud = UserDefaults.standard
+            ud.removeObject(forKey: "userData")
             dismiss(animated: true, completion: nil)
         } catch {
             print("ログアウト失敗！")

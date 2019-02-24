@@ -34,6 +34,9 @@ class LoginViewController: UIViewController {
             } else {
                 SVProgressHUD.dismiss()
                 
+                let ud = UserDefaults.standard
+                let userDataDictionary: [String: String] = ["email": self.emailTextfield.text!, "password": self.passwordTextfield.text!]
+                ud.set(userDataDictionary, forKey: "userData")
                 self.dismiss(animated: true, completion: nil)
                 self.performSegue(withIdentifier: "goToMain", sender: self)
             }

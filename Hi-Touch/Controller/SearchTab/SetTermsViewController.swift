@@ -8,6 +8,7 @@
 
 import CodableFirebase
 import Firebase
+import FirebaseFirestore
 import UIKit
 
 class SetTermsViewController: UIViewController{
@@ -17,7 +18,8 @@ class SetTermsViewController: UIViewController{
     @IBOutlet weak var teamTextField: UITextField!
     @IBOutlet weak var regionTextField: UITextField!
     
-    let dataRef = Database.database().reference().child("users")
+    var db: Firestore!
+//    let dataRef = Database.database().reference().child("users")
     var list = [Profile]()
     var userID: String?
     let gender = ["男", "女", "他"]
@@ -37,30 +39,78 @@ class SetTermsViewController: UIViewController{
     /*-----------------------------------------------------------------------------------------*/
     // Search User Methods
     
-    func searchFirebaseDatabase(child: String, equelValue: String) {
-        let ref = dataRef.queryOrdered(byChild: child).queryEqual(toValue: equelValue)
-        
-        ref.observeSingleEvent(of: DataEventType.value, with: { snapshot in
-            
-            for item in snapshot.children {
-                let snap = item as! DataSnapshot
-                
-                guard let value = snap.value else {
-                    return
-                }
-                let data = try! FirebaseDecoder().decode(Profile.self, from: value)
-                
-//                let snapshotValue = snap.value as! [String: String]
-                
-                self.narrowSearchedData(data)
-            }
-            if self.list.count == 0{
-                print("ユーザーを見つけられませんでした！")
-            }else{
-                self.goToPreviousView()
-            }
-            
-        })
+    func searchFirebaseDatabase(child: [String], equelValue: [String]) {
+        print("ああああああああ")
+        print(child)
+        print(equelValue)
+        db.collection("users").getDocuments { (snapshots, error) in
+                        if error != nil {
+                            print("ユーザーの検索に失敗しました！")
+                        } else {
+                            guard let snap = snapshots else {
+                                preconditionFailure("データの取得に失敗しました！")
+                            }
+                            for document in snap.documents {
+                                do {
+                                    let data = try FirestoreDecoder().decode(Profile.self, from: document.data())
+                                    self.list.append(data)
+                                } catch {
+                                    print("取得したデータのデコードに失敗しました！")
+                                }
+                            }
+                        }
+            print(self.list)
+        }
+//
+//        var ref: Query = db.collection("users")
+//        print("いいいいいいい")
+//        for i in 0..<child.count {
+//            if let temp = ref.whereField(child[i], isEqualTo: equelValue[i]) as? CollectionReference {
+//                ref = temp
+//            }
+//        }
+//        ref.order(by: "team").getDocuments { (snapshots, error) in
+//            if error != nil {
+//                print("ユーザーの検索に失敗しました！")
+//            } else {
+//                guard let snap = snapshots else {
+//                    preconditionFailure("データの取得に失敗しました！")
+//                }
+//                for document in snap.documents {
+//                    do {
+//                        let data = try FirestoreDecoder().decode(Profile.self, from: document.data())
+//                        self.list.append(data)
+//                    } catch {
+//                        print("取得したデータのデコードに失敗しました！")
+//                    }
+//                }
+//            }
+////            self.goToPreviousView()
+//        }
+
+
+
+//        let ref = dataRef.queryOrdered(byChild: child).queryEqual(toValue: equelValue)
+//
+//        ref.observeSingleEvent(of: DataEventType.value, with: { snapshot in
+//
+//            for item in snapshot.children {
+//                let snap = item as! DataSnapshot
+//
+//                guard let value = snap.value else {
+//                    return
+//                }
+//                let data = try! FirebaseDecoder().decode(Profile.self, from: value)
+//
+//                self.narrowSearchedData(data)
+//            }
+//            if self.list.count == 0{
+//                print("ユーザーを見つけられませんでした！")
+//            }else{
+//                self.goToPreviousView()
+//            }
+//
+//        })
     }
     
     func narrowSearchedData(_ value: Profile) {
@@ -112,19 +162,27 @@ class SetTermsViewController: UIViewController{
     @IBAction func searchButtonPressed(_ sender: UIButton) {
         list.removeAll()
         
+        var childList = [String]()
+        var equalValueList = [String]()
+        
         DispatchQueue.main.async {
             if self.teamTextField.text! != "" {
-                self.searchFirebaseDatabase(child: "team", equelValue: self.teamTextField.text!)
-                
-            } else if self.regionTextField.text != "" {
-                self.searchFirebaseDatabase(child: "region", equelValue: self.regionTextField.text!)
-                
-            } else if self.ageTextField.text != "" {
-                self.searchFirebaseDatabase(child: "age", equelValue: self.ageTextField.text!)
-                
-            } else if self.genderTextField.text != "" {
-                self.searchFirebaseDatabase(child: "gender", equelValue: self.genderTextField.text!)
+                childList.append("team")
+                equalValueList.append(self.teamTextField.text!)
             }
+            if self.regionTextField.text != "" {
+                childList.append("region")
+                equalValueList.append(self.regionTextField.text!)
+            }
+            if self.ageTextField.text != "" {
+                childList.append("age")
+                equalValueList.append(self.ageTextField.text!)
+            }
+            if self.genderTextField.text != "" {
+                childList.append("gender")
+                equalValueList.append(self.genderTextField.text!)
+            }
+            self.searchFirebaseDatabase(child: childList, equelValue: equalValueList)
         }
     }
 }

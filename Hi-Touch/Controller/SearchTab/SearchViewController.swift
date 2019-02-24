@@ -9,8 +9,8 @@
 import Firebase
 import FirebaseStorage
 import UIKit
-import Alamofire
 import AlamofireImage
+import Nuke
 
 class SearchViewController: UITableViewController {
     @IBOutlet var searchTableView: UITableView!
@@ -27,6 +27,24 @@ class SearchViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Settings to cache images
+        // 1
+        DataLoader.sharedUrlCache.diskCapacity = 0
+        
+        let pipeline = ImagePipeline {
+            // 2
+            let dataCache = try! DataCache(name: "com.hi-touch.datacache", filenameGenerator: {
+                return $0.sha1
+            })
+            // 3
+            dataCache.sizeLimit = 200 * 1024 * 1024
+            
+            // 4
+            $0.dataCache = dataCache
+        }
+        // 5
+        ImagePipeline.shared = pipeline
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,32 +113,43 @@ class SearchViewController: UITableViewController {
     func loadAvatarImages() {
         for i in 0 ... searchedData.count - 1 {
             avatarImages[i] = nil
-            
-            
-            let imageCache = AutoPurgingImageCache()
-            
+
             guard let imageURL = URL(string: searchedData[i].imageURL) else{
                 preconditionFailure("StringからURLに変換できませんでした！")
             }
-            let urlRequest = URLRequest(url: imageURL)
-            
-            if let cachedAvatarImage = imageCache.image(for: urlRequest, withIdentifier: searchedData[i].imageURL){
-                print("キャッシュから画像をとってきました！")
-                avatarImages[i] = cachedAvatarImage
-                
-            }else{
-                Alamofire.request(urlRequest).responseImage(completionHandler: { (data) in
-                    if let image = data.result.value{
-                        print("画像をダウンロードしました！")
-                        self.avatarImages[i] = image.af_imageRoundedIntoCircle()
-                        imageCache.add(image, for: urlRequest, withIdentifier: self.searchedData[i].imageURL)
-                        print("画像をキャッシュに追加しました")
-                    }else{
-                        print("画像をダウンロードできませんでした！")
+            let request = ImageRequest(url: imageURL, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFill)
+            Nuke.ImagePipeline.shared.loadImage(with: request, progress: nil, completion: { (data, error) in
+                if error != nil {
+                    print("画像をダウンロードできませんでした！")
+                    self.avatarImages[i] = UIImage(named: "alien")?.af_imageRoundedIntoCircle()
+                } else {
+                    print("画像をダウンロードしました！")
+                    guard let image = data?.image else {
+                        preconditionFailure("ダウンロードデータに画像がありませんでした！")
                     }
-                    self.tableView.reloadData()
-                })
-            }
+                    self.avatarImages[i] = image.af_imageRoundedIntoCircle()
+                }
+            })
+            
+//            let urlRequest = URLRequest(url: imageURL)
+//
+//            if let cachedAvatarImage = imageCache.image(for: urlRequest, withIdentifier: searchedData[i].imageURL){
+//                print("キャッシュから画像をとってきました！")
+//                avatarImages[i] = cachedAvatarImage
+//
+//            }else{
+//                Alamofire.request(urlRequest).responseImage(completionHandler: { (data) in
+//                    if let image = data.result.value{
+//                        print("画像をダウンロードしました！")
+//                        self.avatarImages[i] = image.af_imageRoundedIntoCircle()
+//                        imageCache.add(image, for: urlRequest, withIdentifier: self.searchedData[i].imageURL)
+//                        print("画像をキャッシュに追加しました")
+//                    }else{
+//                        print("画像をダウンロードできませんでした！")
+//                    }
+//                    self.tableView.reloadData()
+//                })
+//            }
         }
     }
 }

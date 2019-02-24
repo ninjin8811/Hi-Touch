@@ -76,6 +76,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="ようこそ！" id="fTJ-KW-jzw"/>
+                    <connections>
+                        <segue destination="PTv-YE-gNy" kind="presentation" identifier="loginSegue" id="vNh-Lb-Hsu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -1012,6 +1015,6 @@
         <image name="profile-default" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ptN-n7-9AX"/>
+        <segue reference="vNh-Lb-Hsu"/>
     </inferredMetricsTieBreakers>
 </document>
