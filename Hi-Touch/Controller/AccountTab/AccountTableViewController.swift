@@ -146,9 +146,6 @@ class AccountTableViewController: UITableViewController {
         settings.isPersistenceEnabled = true
         db.settings = settings
         
-//        dataRef = Database.database().reference().child("users").child(userID)
-//        dataRef.keepSynced(true)
-        
         db.collection("users").document(userID).getDocument { (snapshot, error) in
             if error != nil {
                 print("データの取得に失敗しました！")

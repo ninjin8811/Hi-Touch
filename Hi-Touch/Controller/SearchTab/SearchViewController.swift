@@ -19,7 +19,6 @@ class SearchViewController: UITableViewController {
     var avatarImages = [UIImage?]()
     var searchedData = [Profile]() {
         didSet {
-            
             initAvatarArray()
             loadAvatarImages()
         }
@@ -104,14 +103,14 @@ class SearchViewController: UITableViewController {
     
     func initAvatarArray() {
         avatarImages.removeAll()
-        for _ in 0 ... searchedData.count - 1 {
+        for _ in 0 ..< searchedData.count {
             avatarImages.append(nil)
         }
         tableView.reloadData()
     }
     
     func loadAvatarImages() {
-        for i in 0 ... searchedData.count - 1 {
+        for i in 0 ..< searchedData.count {
             avatarImages[i] = nil
 
             guard let imageURL = URL(string: searchedData[i].imageURL) else{
@@ -129,6 +128,7 @@ class SearchViewController: UITableViewController {
                     }
                     self.avatarImages[i] = image.af_imageRoundedIntoCircle()
                 }
+                self.tableView.reloadData()
             })
             
 //            let urlRequest = URLRequest(url: imageURL)
