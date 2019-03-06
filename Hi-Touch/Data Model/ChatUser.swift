@@ -9,11 +9,12 @@
 import Foundation
 import RealmSwift
 
-class ChatUserProfile: Object {
+class ChatUser: Object {
     @objc dynamic var name = "name"
     @objc dynamic var recentMessage = "message"
     @objc dynamic var time = "time"
     @objc dynamic var imageURL = "default"
+    @objc dynamic var userID = "default"
     
     let messages = List<Messages>()
 }

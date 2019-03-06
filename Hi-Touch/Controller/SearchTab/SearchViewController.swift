@@ -19,8 +19,7 @@ class SearchViewController: UITableViewController {
     var avatarImages = [UIImage?]()
     var searchedData = [Profile]() {
         didSet {
-            initAvatarArray()
-            loadAvatarImages()
+            tableView.reloadData()
         }
     }
     
@@ -44,9 +43,12 @@ class SearchViewController: UITableViewController {
         }
         // 5
         ImagePipeline.shared = pipeline
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        let contentMode = ImageLoadingOptions.ContentModes(success: .scaleAspectFill, failure: .scaleAspectFit, placeholder: .scaleAspectFit)
+        ImageLoadingOptions.shared.contentModes = contentMode
+        ImageLoadingOptions.shared.placeholder = UIImage(named: "alien")
+        ImageLoadingOptions.shared.failureImage = UIImage(named: "alien")
+        ImageLoadingOptions.shared.transition = .fadeIn(duration: 0.5)
+        
         searchTableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "profileCell")
     }
     
@@ -70,10 +72,17 @@ class SearchViewController: UITableViewController {
         cell.regionLabel.text = searchedData[indexPath.row].region
         cell.teamLabel.text = searchedData[indexPath.row].team
         cell.genderLabel.text = searchedData[indexPath.row].gender
-        
-        if let image = avatarImages[indexPath.row] {
-            cell.profileImageView.image = image
+
+        guard let imageURL = URL(string: searchedData[indexPath.row].imageURL) else{
+            preconditionFailure("StringからURLに変換できませんでした！")
         }
+        
+        let request = ImageRequest(url: imageURL, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFill)
+        Nuke.loadImage(with: request, into: cell.profileImageView)
+        
+//        if let image = avatarImages[indexPath.row] {
+//            cell.profileImageView.image = image
+//        }
         return cell
     }
     
@@ -101,55 +110,35 @@ class SearchViewController: UITableViewController {
     
     // MARK: - load Images
     
-    func initAvatarArray() {
-        avatarImages.removeAll()
-        for _ in 0 ..< searchedData.count {
-            avatarImages.append(nil)
-        }
-        tableView.reloadData()
-    }
-    
-    func loadAvatarImages() {
-        for i in 0 ..< searchedData.count {
-            avatarImages[i] = nil
-
-            guard let imageURL = URL(string: searchedData[i].imageURL) else{
-                preconditionFailure("StringからURLに変換できませんでした！")
-            }
-            let request = ImageRequest(url: imageURL, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFill)
-            Nuke.ImagePipeline.shared.loadImage(with: request, progress: nil, completion: { (data, error) in
-                if error != nil {
-                    print("画像をダウンロードできませんでした！")
-                    self.avatarImages[i] = UIImage(named: "alien")?.af_imageRoundedIntoCircle()
-                } else {
-                    print("画像をダウンロードしました！")
-                    guard let image = data?.image else {
-                        preconditionFailure("ダウンロードデータに画像がありませんでした！")
-                    }
-                    self.avatarImages[i] = image.af_imageRoundedIntoCircle()
-                }
-                self.tableView.reloadData()
-            })
-            
-//            let urlRequest = URLRequest(url: imageURL)
+//    func initAvatarArray() {
+//        avatarImages.removeAll()
+//        for _ in 0 ..< searchedData.count {
+//            avatarImages.append(nil)
+//        }
+//        tableView.reloadData()
+//    }
 //
-//            if let cachedAvatarImage = imageCache.image(for: urlRequest, withIdentifier: searchedData[i].imageURL){
-//                print("キャッシュから画像をとってきました！")
-//                avatarImages[i] = cachedAvatarImage
+//    func loadAvatarImages() {
+//        for i in 0 ..< searchedData.count {
+//            avatarImages[i] = nil
 //
-//            }else{
-//                Alamofire.request(urlRequest).responseImage(completionHandler: { (data) in
-//                    if let image = data.result.value{
-//                        print("画像をダウンロードしました！")
-//                        self.avatarImages[i] = image.af_imageRoundedIntoCircle()
-//                        imageCache.add(image, for: urlRequest, withIdentifier: self.searchedData[i].imageURL)
-//                        print("画像をキャッシュに追加しました")
-//                    }else{
-//                        print("画像をダウンロードできませんでした！")
-//                    }
-//                    self.tableView.reloadData()
-//                })
+//            guard let imageURL = URL(string: searchedData[i].imageURL) else{
+//                preconditionFailure("StringからURLに変換できませんでした！")
 //            }
-        }
-    }
+//            let request = ImageRequest(url: imageURL, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFill)
+//            Nuke.ImagePipeline.shared.loadImage(with: request, progress: nil, completion: { (data, error) in
+//                if error != nil {
+//                    print("画像をダウンロードできませんでした！")
+//                    self.avatarImages[i] = UIImage(named: "alien")?.af_imageRoundedIntoCircle()
+//                } else {
+//                    print("画像をダウンロードしました！")
+//                    guard let image = data?.image else {
+//                        preconditionFailure("ダウンロードデータに画像がありませんでした！")
+//                    }
+//                    self.avatarImages[i] = image.af_imageRoundedIntoCircle()
+//                }
+//                self.tableView.reloadData()
+//            })
+//        }
+//    }
 }

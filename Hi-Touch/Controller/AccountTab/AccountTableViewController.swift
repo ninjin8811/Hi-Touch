@@ -57,6 +57,12 @@ class AccountTableViewController: UITableViewController {
         // 5
         ImagePipeline.shared = pipeline
         
+        let contentMode = ImageLoadingOptions.ContentModes(success: .scaleAspectFill, failure: .scaleAspectFit, placeholder: .scaleAspectFit)
+        ImageLoadingOptions.shared.contentModes = contentMode
+        ImageLoadingOptions.shared.placeholder = UIImage(named: "alien")
+        ImageLoadingOptions.shared.failureImage = UIImage(named: "alien")
+        ImageLoadingOptions.shared.transition = .fadeIn(duration: 0.5)
+        
         db = Firestore.firestore()
         accountTableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "profileCell")
         DataLoader.sharedUrlCache.diskCapacity = 0 //Disable the default disk cache
@@ -97,7 +103,14 @@ class AccountTableViewController: UITableViewController {
             profileCell.regionLabel.text = profileData.region
             profileCell.teamLabel.text = profileData.team
             profileCell.genderLabel.text = profileData.gender
-            profileCell.profileImageView.image = avatarImage
+//            profileCell.profileImageView.image = avatarImage
+            
+            guard let imageURL = URL(string: profileData.imageURL) else{
+                preconditionFailure("StringからURLに変換できませんでした！")
+            }
+            
+            let request = ImageRequest(url: imageURL, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFill)
+            Nuke.loadImage(with: request, into: profileCell.profileImageView)
             
             return profileCell
             
@@ -161,7 +174,7 @@ class AccountTableViewController: UITableViewController {
                     do {
                         print("データをロードしました！")
                         self.profileData = try FirestoreDecoder().decode(Profile.self, from: value)
-                        self.downloadImage(with: self.userID)
+//                        self.downloadImage()
                         self.tableView.reloadData()
                     } catch {
                         print("取得したデータのデコードに失敗しました！")
@@ -178,25 +191,25 @@ class AccountTableViewController: UITableViewController {
         }
     }
     
-    func downloadImage(with userID: String) {
-        guard let imageURL = URL(string: profileData.imageURL) else{
-            preconditionFailure("StringからURLに変換できませんでした！")
-        }
-
-        let request = ImageRequest(url: imageURL, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFill)
-        Nuke.ImagePipeline.shared.loadImage(with: request, progress: nil, completion: { (data, error) in
-            if error != nil {
-                print("画像をダウンロードできませんでした！")
-                self.avatarImage = UIImage(named: "alien")?.af_imageRoundedIntoCircle()
-            } else {
-                print("画像をダウンロードしました！")
-                guard let image = data?.image else {
-                    preconditionFailure("ダウンロードデータに画像がありませんでした！")
-                }
-                self.avatarImage = image.af_imageRoundedIntoCircle()
-            }
-        })
-    }
+//    func downloadImage() {
+//        guard let imageURL = URL(string: profileData.imageURL) else{
+//            preconditionFailure("StringからURLに変換できませんでした！")
+//        }
+//
+//        let request = ImageRequest(url: imageURL, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFill)
+//        Nuke.ImagePipeline.shared.loadImage(with: request, progress: nil, completion: { (data, error) in
+//            if error != nil {
+//                print("画像をダウンロードできませんでした！")
+//                self.avatarImage = UIImage(named: "alien")?.af_imageRoundedIntoCircle()
+//            } else {
+//                print("画像をダウンロードしました！")
+//                guard let image = data?.image else {
+//                    preconditionFailure("ダウンロードデータに画像がありませんでした！")
+//                }
+//                self.avatarImage = image.af_imageRoundedIntoCircle()
+//            }
+//        })
+//    }
     
     
     

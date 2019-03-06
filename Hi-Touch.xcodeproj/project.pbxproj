@@ -34,7 +34,7 @@
 		9AF145DA2213DF5A008DE2A1 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF145D82213DF5A008DE2A1 /* MessageCell.swift */; };
 		9AF145DB2213DF5A008DE2A1 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF145D92213DF5A008DE2A1 /* MessageCell.xib */; };
 		9AF145DF2213F625008DE2A1 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF145DE2213F625008DE2A1 /* Messages.swift */; };
-		9AF145E12213FCEE008DE2A1 /* ChatUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF145E02213FCEE008DE2A1 /* ChatUserProfile.swift */; };
+		9AF145E12213FCEE008DE2A1 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF145E02213FCEE008DE2A1 /* ChatUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,7 +70,7 @@
 		9AF145D82213DF5A008DE2A1 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		9AF145D92213DF5A008DE2A1 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		9AF145DE2213F625008DE2A1 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
-		9AF145E02213FCEE008DE2A1 /* ChatUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUserProfile.swift; sourceTree = "<group>"; };
+		9AF145E02213FCEE008DE2A1 /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
 		BC16082C9764466BFC0A5C35 /* Pods_Hi_Touch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hi_Touch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AC3B7847E17CEC6DBD84B4 /* Pods-Hi-Touch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hi-Touch.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hi-Touch/Pods-Hi-Touch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,7 +131,7 @@
 			children = (
 				9A537302220757AF00C98EC5 /* Profile.swift */,
 				9AF145DE2213F625008DE2A1 /* Messages.swift */,
-				9AF145E02213FCEE008DE2A1 /* ChatUserProfile.swift */,
+				9AF145E02213FCEE008DE2A1 /* ChatUser.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -373,7 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AF145E12213FCEE008DE2A1 /* ChatUserProfile.swift in Sources */,
+				9AF145E12213FCEE008DE2A1 /* ChatUser.swift in Sources */,
 				9AA1FB2D220EC32D0000AEE7 /* SearchViewController.swift in Sources */,
 				9AF145DF2213F625008DE2A1 /* Messages.swift in Sources */,
 				9AF145DA2213DF5A008DE2A1 /* MessageCell.swift in Sources */,

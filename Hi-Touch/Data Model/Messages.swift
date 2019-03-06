@@ -13,5 +13,5 @@ class Messages: Object {
     @objc dynamic var message: String?
     @objc dynamic var timeCreated: Date?
     
-    var parentUser = LinkingObjects(fromType: ChatUserProfile.self, property: "messages")
+    var parentUser = LinkingObjects(fromType: ChatUser.self, property: "messages")
 }
