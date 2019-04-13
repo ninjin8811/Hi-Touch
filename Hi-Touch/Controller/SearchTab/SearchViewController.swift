@@ -102,43 +102,7 @@ class SearchViewController: UITableViewController {
             let destinationVC = segue.destination as! UserProfileViewController
             
             destinationVC.profileData = searchedData[selectedIndex]
-            destinationVC.avatarImage = avatarImages[selectedIndex]
+            //ユーザープロフィールビューに画像を渡す処理を書く！
         }
     }
-    
-    /*-----------------------------------------------------------------------------------------*/
-    
-    // MARK: - load Images
-    
-//    func initAvatarArray() {
-//        avatarImages.removeAll()
-//        for _ in 0 ..< searchedData.count {
-//            avatarImages.append(nil)
-//        }
-//        tableView.reloadData()
-//    }
-//
-//    func loadAvatarImages() {
-//        for i in 0 ..< searchedData.count {
-//            avatarImages[i] = nil
-//
-//            guard let imageURL = URL(string: searchedData[i].imageURL) else{
-//                preconditionFailure("StringからURLに変換できませんでした！")
-//            }
-//            let request = ImageRequest(url: imageURL, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFill)
-//            Nuke.ImagePipeline.shared.loadImage(with: request, progress: nil, completion: { (data, error) in
-//                if error != nil {
-//                    print("画像をダウンロードできませんでした！")
-//                    self.avatarImages[i] = UIImage(named: "alien")?.af_imageRoundedIntoCircle()
-//                } else {
-//                    print("画像をダウンロードしました！")
-//                    guard let image = data?.image else {
-//                        preconditionFailure("ダウンロードデータに画像がありませんでした！")
-//                    }
-//                    self.avatarImages[i] = image.af_imageRoundedIntoCircle()
-//                }
-//                self.tableView.reloadData()
-//            })
-//        }
-//    }
 }

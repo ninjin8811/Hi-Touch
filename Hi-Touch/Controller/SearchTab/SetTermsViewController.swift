@@ -66,61 +66,7 @@ class SetTermsViewController: UIViewController{
             }
             self.goToPreviousView()
         }
-
-//        let ref = dataRef.queryOrdered(byChild: child).queryEqual(toValue: equelValue)
-//
-//        ref.observeSingleEvent(of: DataEventType.value, with: { snapshot in
-//
-//            for item in snapshot.children {
-//                let snap = item as! DataSnapshot
-//
-//                guard let value = snap.value else {
-//                    return
-//                }
-//                let data = try! FirebaseDecoder().decode(Profile.self, from: value)
-//
-//                self.narrowSearchedData(data)
-//            }
-//            if self.list.count == 0{
-//                print("ユーザーを見つけられませんでした！")
-//            }else{
-//                self.goToPreviousView()
-//            }
-//
-//        })
     }
-    
-    
-    
-//
-//    func narrowSearchedData(_ value: Profile) {
-//
-//        if value.userID == userID{
-//            return
-//        }
-//        if genderTextField.text! != ""{
-//            if genderTextField.text! != value.gender{
-//                return
-//            }
-//        }
-//        if ageTextField.text! != "" {
-//            if ageTextField.text! != value.age {
-//                return
-//            }
-//        }
-//        if teamTextField.text! != "" {
-//            if teamTextField.text! != value.team {
-//                return
-//            }
-//        }
-//        if regionTextField.text! != "" {
-//            if teamTextField.text! != value.team {
-//                return
-//            }
-//        }
-//
-//        list.append(value)
-//    }
     
     /*-----------------------------------------------------------------------------------------*/
     

@@ -7,9 +7,20 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
+import RealmSwift
 
 class ChatTableViewController: UITableViewController {
+    
+    let realm = try! Realm()
     var profileData = Profile()
+    var messages: Results<Messages>?
+    var selectedUser: ChatUser? {
+        didSet {
+            loadMessages()
+        }
+    }
     
     @IBOutlet var chatTableView: UITableView!
     
@@ -28,4 +39,13 @@ class ChatTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
+    
+    /*-----------------------------------------------------------------------------------------*/
+    
+    // MARK: - Data Maniplate Methods
+    
+    func loadMessages() {
+        
+    }
+    
 }

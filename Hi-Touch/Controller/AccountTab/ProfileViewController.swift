@@ -13,6 +13,7 @@ import FirebaseFirestore
 import SVProgressHUD
 import UIKit
 import AlamofireImage
+import Nuke
 
 class ProfileViewController: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
@@ -26,10 +27,33 @@ class ProfileViewController: UIViewController {
 //    var proDataRef = Database.database().reference()
     var db = Firestore.firestore()
     var userID: String?
-    var avatarImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Settings to cache images
+        // 1
+        DataLoader.sharedUrlCache.diskCapacity = 0
+        
+        let pipeline = ImagePipeline {
+            // 2
+            let dataCache = try! DataCache(name: "com.hi-touch.datacache", filenameGenerator: {
+                return $0.sha1
+            })
+            // 3
+            dataCache.sizeLimit = 200 * 1024 * 1024
+            
+            // 4
+            $0.dataCache = dataCache
+        }
+        // 5
+        ImagePipeline.shared = pipeline
+        
+        let contentMode = ImageLoadingOptions.ContentModes(success: .scaleAspectFill, failure: .scaleAspectFit, placeholder: .scaleAspectFit)
+        ImageLoadingOptions.shared.contentModes = contentMode
+        ImageLoadingOptions.shared.placeholder = UIImage(named: "alien")
+        ImageLoadingOptions.shared.failureImage = UIImage(named: "alien")
+        ImageLoadingOptions.shared.transition = .fadeIn(duration: 0.5)
         
         profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.imageViewTapped(_:))))
         
@@ -38,10 +62,6 @@ class ProfileViewController: UIViewController {
         teamTextField.text = profileData.team
         regionTextField.text = profileData.region
         genderTextField.text = profileData.gender
-        
-        if let image = avatarImage{
-            profileImageView.image = image
-        }
     }
     
     @IBAction func editButtonPressed(_ sender: UIButton) {
@@ -105,7 +125,7 @@ class ProfileViewController: UIViewController {
         }
         let imageRef = Storage.storage().reference().child("avatarImages").child("\(userID).jpg")
         
-        if let data = UIImageJPEGRepresentation(profileImageView.image!, 1.0) {
+        if let data = profileImageView.image!.jpegData(compressionQuality: 1.0) {
             imageRef.putData(data, metadata: nil) { _, error in
                 
                 if error != nil {
@@ -167,12 +187,15 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         present(alert, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as! UIImage
         
         let resizedImage = resizeImage(image: image, width: 480)
         
-        profileImageView.image = resizedImage.af_imageRoundedIntoCircle()
+//        profileImageView.image = resizedImage.af_imageRoundedIntoCircle()
         
         uploadImage(image: resizedImage)
         
@@ -191,4 +214,14 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         
         return resizedImage!
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

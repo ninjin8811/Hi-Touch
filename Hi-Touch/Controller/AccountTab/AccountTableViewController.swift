@@ -103,14 +103,15 @@ class AccountTableViewController: UITableViewController {
             profileCell.regionLabel.text = profileData.region
             profileCell.teamLabel.text = profileData.team
             profileCell.genderLabel.text = profileData.gender
-//            profileCell.profileImageView.image = avatarImage
             
-            guard let imageURL = URL(string: profileData.imageURL) else{
-                preconditionFailure("StringからURLに変換できませんでした！")
+            if profileData.imageURL != "default" {
+                guard let imageURL = URL(string: profileData.imageURL) else{
+                    preconditionFailure("StringからURLに変換できませんでした！")
+                }
+                
+                let request = ImageRequest(url: imageURL, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFill)
+                Nuke.loadImage(with: request, into: profileCell.profileImageView)
             }
-            
-            let request = ImageRequest(url: imageURL, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFill)
-            Nuke.loadImage(with: request, into: profileCell.profileImageView)
             
             return profileCell
             
@@ -138,15 +139,8 @@ class AccountTableViewController: UITableViewController {
         if segueIdentifier == "goToProfileSetting" {
             let destinationVC = segue.destination as! ProfileViewController
             destinationVC.hidesBottomBarWhenPushed = true
-//            destinationVC.proDataRef = dataRef
             destinationVC.userID = userID
             destinationVC.profileData = profileData
-            
-            if let image = avatarImage {
-                destinationVC.avatarImage = image
-            } else {
-                print("画像を渡せませんでした！")
-            }
         }
     }
     
@@ -190,26 +184,6 @@ class AccountTableViewController: UITableViewController {
             }
         }
     }
-    
-//    func downloadImage() {
-//        guard let imageURL = URL(string: profileData.imageURL) else{
-//            preconditionFailure("StringからURLに変換できませんでした！")
-//        }
-//
-//        let request = ImageRequest(url: imageURL, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFill)
-//        Nuke.ImagePipeline.shared.loadImage(with: request, progress: nil, completion: { (data, error) in
-//            if error != nil {
-//                print("画像をダウンロードできませんでした！")
-//                self.avatarImage = UIImage(named: "alien")?.af_imageRoundedIntoCircle()
-//            } else {
-//                print("画像をダウンロードしました！")
-//                guard let image = data?.image else {
-//                    preconditionFailure("ダウンロードデータに画像がありませんでした！")
-//                }
-//                self.avatarImage = image.af_imageRoundedIntoCircle()
-//            }
-//        })
-//    }
     
     
     

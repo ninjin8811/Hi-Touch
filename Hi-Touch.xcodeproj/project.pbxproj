@@ -25,14 +25,16 @@
 		9A73D3C52205685E00D4A918 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A73D3C32205685E00D4A918 /* Main.storyboard */; };
 		9A73D3C72205685E00D4A918 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A73D3C62205685E00D4A918 /* Assets.xcassets */; };
 		9A73D3CA2205685E00D4A918 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A73D3C82205685E00D4A918 /* LaunchScreen.storyboard */; };
+		9A8712682232BBCE003BF68C /* MyMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8712662232BBCE003BF68C /* MyMessage.swift */; };
+		9A8712692232BBCE003BF68C /* MyMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8712672232BBCE003BF68C /* MyMessage.xib */; };
+		9A8712702232C3F8003BF68C /* YourMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A87126E2232C3F8003BF68C /* YourMessage.swift */; };
+		9A8712712232C3F8003BF68C /* YourMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A87126F2232C3F8003BF68C /* YourMessage.xib */; };
 		9AA1FB2D220EC32D0000AEE7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1FB2C220EC32D0000AEE7 /* SearchViewController.swift */; };
 		9AA1FB2F220EE3640000AEE7 /* SetTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1FB2E220EE3640000AEE7 /* SetTermsViewController.swift */; };
 		9AA875EC220ACA110055B03C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA875EB220ACA110055B03C /* ProfileViewController.swift */; };
 		9AB5637D2205807C00BAA0B2 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB5637C2205807C00BAA0B2 /* WelcomeViewController.swift */; };
 		9AB5637F2205809900BAA0B2 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB5637E2205809900BAA0B2 /* RegisterViewController.swift */; };
 		9AB56381220580A700BAA0B2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB56380220580A700BAA0B2 /* LoginViewController.swift */; };
-		9AF145DA2213DF5A008DE2A1 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF145D82213DF5A008DE2A1 /* MessageCell.swift */; };
-		9AF145DB2213DF5A008DE2A1 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF145D92213DF5A008DE2A1 /* MessageCell.xib */; };
 		9AF145DF2213F625008DE2A1 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF145DE2213F625008DE2A1 /* Messages.swift */; };
 		9AF145E12213FCEE008DE2A1 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF145E02213FCEE008DE2A1 /* ChatUser.swift */; };
 /* End PBXBuildFile section */
@@ -61,14 +63,16 @@
 		9A73D3C62205685E00D4A918 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A73D3C92205685E00D4A918 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A73D3CB2205685E00D4A918 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A8712662232BBCE003BF68C /* MyMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessage.swift; sourceTree = "<group>"; };
+		9A8712672232BBCE003BF68C /* MyMessage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMessage.xib; sourceTree = "<group>"; };
+		9A87126E2232C3F8003BF68C /* YourMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMessage.swift; sourceTree = "<group>"; };
+		9A87126F2232C3F8003BF68C /* YourMessage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YourMessage.xib; sourceTree = "<group>"; };
 		9AA1FB2C220EC32D0000AEE7 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		9AA1FB2E220EE3640000AEE7 /* SetTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTermsViewController.swift; sourceTree = "<group>"; };
 		9AA875EB220ACA110055B03C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9AB5637C2205807C00BAA0B2 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		9AB5637E2205809900BAA0B2 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9AB56380220580A700BAA0B2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		9AF145D82213DF5A008DE2A1 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
-		9AF145D92213DF5A008DE2A1 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		9AF145DE2213F625008DE2A1 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		9AF145E02213FCEE008DE2A1 /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
 		BC16082C9764466BFC0A5C35 /* Pods_Hi_Touch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hi_Touch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,8 +124,10 @@
 				9A5372FF2206F30B00C98EC5 /* ProfileCell.swift */,
 				9A5F72A32212C9C600477B69 /* ChatUserCell.xib */,
 				9A5F72A92212CDF400477B69 /* ChatUserCell.swift */,
-				9AF145D82213DF5A008DE2A1 /* MessageCell.swift */,
-				9AF145D92213DF5A008DE2A1 /* MessageCell.xib */,
+				9A8712662232BBCE003BF68C /* MyMessage.swift */,
+				9A8712672232BBCE003BF68C /* MyMessage.xib */,
+				9A87126E2232C3F8003BF68C /* YourMessage.swift */,
+				9A87126F2232C3F8003BF68C /* YourMessage.xib */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -258,6 +264,7 @@
 				TargetAttributes = {
 					9A73D3BB2205685E00D4A918 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -288,9 +295,10 @@
 				9A73D3CA2205685E00D4A918 /* LaunchScreen.storyboard in Resources */,
 				9A0B61632205939C006A395A /* GoogleService-Info.plist in Resources */,
 				9A73D3C72205685E00D4A918 /* Assets.xcassets in Resources */,
+				9A8712692232BBCE003BF68C /* MyMessage.xib in Resources */,
+				9A8712712232C3F8003BF68C /* YourMessage.xib in Resources */,
 				9A73D3C52205685E00D4A918 /* Main.storyboard in Resources */,
 				9A5F72A42212C9C600477B69 /* ChatUserCell.xib in Resources */,
-				9AF145DB2213DF5A008DE2A1 /* MessageCell.xib in Resources */,
 				9A5372FC2206E8BB00C98EC5 /* ProfileCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,10 +382,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AF145E12213FCEE008DE2A1 /* ChatUser.swift in Sources */,
+				9A8712702232C3F8003BF68C /* YourMessage.swift in Sources */,
 				9AA1FB2D220EC32D0000AEE7 /* SearchViewController.swift in Sources */,
 				9AF145DF2213F625008DE2A1 /* Messages.swift in Sources */,
-				9AF145DA2213DF5A008DE2A1 /* MessageCell.swift in Sources */,
 				9A5F72AA2212CDF400477B69 /* ChatUserCell.swift in Sources */,
+				9A8712682232BBCE003BF68C /* MyMessage.swift in Sources */,
 				9A56E878221FFAD300D60662 /* Hash.swift in Sources */,
 				9A5F72A222128D4000477B69 /* UserProfileViewController.swift in Sources */,
 				9AB5637D2205807C00BAA0B2 /* WelcomeViewController.swift in Sources */,
@@ -538,7 +547,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yoshinofumiya.Hi-Touch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -554,7 +563,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yoshinofumiya.Hi-Touch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

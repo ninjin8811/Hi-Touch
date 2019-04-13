@@ -18,7 +18,7 @@ class ChatUserListTableViewController: UITableViewController {
     var addedUserName = "name"
     var addedUserID: String? {
         didSet {
-            searchLoadedUser(userID: addedUserID!)
+//            searchExsistingUser(userID: addedUserID!)
 //            performSegue(withIdentifier: "goToChat", sender: self)
         }
     }
@@ -72,9 +72,9 @@ class ChatUserListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "chatUserCell", for: indexPath) as! ChatUserCell
         
-        cell.nameLabel.text = users?[indexPath.row].name ?? "No Users"
-        cell.messageLabel.text = users?[indexPath.row].recentMessage ?? ""
-        cell.timeLabel.text = users?[indexPath.row].time ?? ""
+        cell.nameLabel.text = users?[indexPath.row].name
+        cell.messageLabel.text = users?[indexPath.row].recentMessage
+        cell.timeLabel.text = users?[indexPath.row].time
         
         guard let urlString = users?[indexPath.row].imageURL else {
             preconditionFailure("ユーザーデータにイメージURLがありませんでした！")
@@ -91,7 +91,7 @@ class ChatUserListTableViewController: UITableViewController {
     
     /*-----------------------------------------------------------------------------------------*/
     
-    // MARK: Data Manipulate Methods
+    // MARK: - Data Manipulate Methods
     
     func loadUsers() {
         users = realm.objects(ChatUser.self)
@@ -109,7 +109,9 @@ class ChatUserListTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    func searchLoadedUser(userID: String) {
+    
+    // MARK: - When this page moved from UserProfileView
+    func searchExsistingUser(userID: String) {
         print("サーチ！！")
         
         let newUser = ChatUser()
