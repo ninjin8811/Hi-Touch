@@ -8,7 +8,6 @@ target 'Hi-Touch' do
   # Pods for Hi-Touch
 
 pod 'RealmSwift'
-pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
@@ -16,8 +15,8 @@ pod 'Firebase/Firestore’
 pod 'SVProgressHUD'
 pod ‘Firebase/Storage’
 pod 'FirebaseUI/Storage'
-pod 'CodableFirebase’,‘0.0.7’
-pod 'AlamofireImage', '~> 3.5'
+pod 'CodableFirebase’
+pod 'AlamofireImage'
 pod 'SwiftFormat/CLI'
 pod 'SwiftLint'
 pod ‘Nuke’
