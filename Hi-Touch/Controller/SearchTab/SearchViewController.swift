@@ -32,12 +32,9 @@ class SearchViewController: UITableViewController {
         
         let pipeline = ImagePipeline {
             // 2
-            let dataCache = try! DataCache(name: "com.hi-touch.datacache", filenameGenerator: {
-                return $0.sha1
-            })
+            let dataCache = try! DataCache(name: "com.hi-touch.datacache")
             // 3
             dataCache.sizeLimit = 200 * 1024 * 1024
-            
             // 4
             $0.dataCache = dataCache
         }

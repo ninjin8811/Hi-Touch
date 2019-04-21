@@ -37,12 +37,9 @@ class ProfileViewController: UIViewController {
         
         let pipeline = ImagePipeline {
             // 2
-            let dataCache = try! DataCache(name: "com.hi-touch.datacache", filenameGenerator: {
-                return $0.sha1
-            })
+            let dataCache = try! DataCache(name: "com.hi-touch.datacache")
             // 3
             dataCache.sizeLimit = 200 * 1024 * 1024
-            
             // 4
             $0.dataCache = dataCache
         }
@@ -62,6 +59,8 @@ class ProfileViewController: UIViewController {
         teamTextField.text = profileData.team
         regionTextField.text = profileData.region
         genderTextField.text = profileData.gender
+        
+        loadAvatarImage()
     }
     
     @IBAction func editButtonPressed(_ sender: UIButton) {
@@ -106,18 +105,9 @@ class ProfileViewController: UIViewController {
                 print("セーブできました！")
             }
         }
-        
-//        proDataRef.setValue(profileDictionary) { error, _ in
-//
-//            if error != nil {
-//                print("セーブできませんでした！")
-//            } else {
-//                print("セーブできました！")
-//            }
-//        }
     }
     
-    func uploadImage(image: UIImage) {
+    func uploadImage(_ resizedImage: UIImage) {
         SVProgressHUD.show()
         
         guard let userID = Auth.auth().currentUser?.uid else {
@@ -125,7 +115,7 @@ class ProfileViewController: UIViewController {
         }
         let imageRef = Storage.storage().reference().child("avatarImages").child("\(userID).jpg")
         
-        if let data = profileImageView.image!.jpegData(compressionQuality: 1.0) {
+        if let data = resizedImage.jpegData(compressionQuality: 1.0) {
             imageRef.putData(data, metadata: nil) { _, error in
                 
                 if error != nil {
@@ -133,21 +123,32 @@ class ProfileViewController: UIViewController {
                 } else {
                     print("画像がアップロードされました！")
                     
-                    imageRef.downloadURL(completion: { url, error in
+                    imageRef.downloadURL(completion: { uploadedImageURL, error in
                         
                         if error != nil {
                             print("ダウンロードURLが取得できませんでした！")
                         } else {
-                            guard let imageURL = url?.absoluteString else {
+                            guard let imageURL = uploadedImageURL?.absoluteString else {
                                 return
                             }
                             self.profileData.imageURL = imageURL
+                            self.loadAvatarImage()
                         }
                     })
                 }
             }
         }
         SVProgressHUD.dismiss()
+    }
+    
+    func loadAvatarImage() {
+        if profileData.imageURL != "default" {
+            guard let downloadURL = URL(string: profileData.imageURL) else{
+                preconditionFailure("StringからURLに変換できませんでした！")
+            }
+            let request = ImageRequest(url: downloadURL, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFill)
+            Nuke.loadImage(with: request, into: profileImageView)
+        }
     }
 }
 
@@ -195,9 +196,9 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         
         let resizedImage = resizeImage(image: image, width: 480)
         
-//        profileImageView.image = resizedImage.af_imageRoundedIntoCircle()
-        
-        uploadImage(image: resizedImage)
+        //resizedImageは丸画像になってない！！
+        //丸画像にする処理を書く
+        uploadImage(resizedImage)
         
         dismiss(animated: true, completion: nil)
     }

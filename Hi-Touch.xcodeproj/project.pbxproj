@@ -12,7 +12,6 @@
 		9A5372FC2206E8BB00C98EC5 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5372FB2206E8BB00C98EC5 /* ProfileCell.xib */; };
 		9A5373002206F30B00C98EC5 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5372FF2206F30B00C98EC5 /* ProfileCell.swift */; };
 		9A537303220757AF00C98EC5 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A537302220757AF00C98EC5 /* Profile.swift */; };
-		9A56E878221FFAD300D60662 /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56E877221FFAD300D60662 /* Hash.swift */; };
 		9A5F72A222128D4000477B69 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F72A122128D4000477B69 /* UserProfileViewController.swift */; };
 		9A5F72A42212C9C600477B69 /* ChatUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F72A32212C9C600477B69 /* ChatUserCell.xib */; };
 		9A5F72AA2212CDF400477B69 /* ChatUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F72A92212CDF400477B69 /* ChatUserCell.swift */; };
@@ -47,8 +46,6 @@
 		9A5372FB2206E8BB00C98EC5 /* ProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
 		9A5372FF2206F30B00C98EC5 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		9A537302220757AF00C98EC5 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		9A56E876221F38C500D60662 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		9A56E877221FFAD300D60662 /* Hash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hash.swift; sourceTree = "<group>"; };
 		9A5F72A122128D4000477B69 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		9A5F72A32212C9C600477B69 /* ChatUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatUserCell.xib; sourceTree = "<group>"; };
 		9A5F72A92212CDF400477B69 /* ChatUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUserCell.swift; sourceTree = "<group>"; };
@@ -184,7 +181,6 @@
 		9A73D3B32205685E00D4A918 = {
 			isa = PBXGroup;
 			children = (
-				9A56E876221F38C500D60662 /* Bridging-Header.h */,
 				9A73D3BE2205685E00D4A918 /* Hi-Touch */,
 				9A1A2B6A2214FEAE0046640C /* Hi-TouchTests */,
 				9A73D3BD2205685E00D4A918 /* Products */,
@@ -204,7 +200,6 @@
 		9A73D3BE2205685E00D4A918 /* Hi-Touch */ = {
 			isa = PBXGroup;
 			children = (
-				9A56E877221FFAD300D60662 /* Hash.swift */,
 				9A73D3BF2205685E00D4A918 /* AppDelegate.swift */,
 				9A5373012207577D00C98EC5 /* Data Model */,
 				9A5372FA2206E85100C98EC5 /* Custom Cell */,
@@ -385,7 +380,6 @@
 				9AF145DF2213F625008DE2A1 /* Messages.swift in Sources */,
 				9A5F72AA2212CDF400477B69 /* ChatUserCell.swift in Sources */,
 				9A8712682232BBCE003BF68C /* MyMessage.swift in Sources */,
-				9A56E878221FFAD300D60662 /* Hash.swift in Sources */,
 				9A5F72A222128D4000477B69 /* UserProfileViewController.swift in Sources */,
 				9AB5637D2205807C00BAA0B2 /* WelcomeViewController.swift in Sources */,
 				9AA1FB2F220EE3640000AEE7 /* SetTermsViewController.swift in Sources */,
@@ -549,6 +543,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yoshinofumiya.Hi-Touch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -565,6 +560,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yoshinofumiya.Hi-Touch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
