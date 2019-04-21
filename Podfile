@@ -17,8 +17,6 @@ pod ‘Firebase/Storage’
 pod 'FirebaseUI/Storage'
 pod 'CodableFirebase’
 pod 'AlamofireImage'
-pod 'SwiftFormat/CLI'
-pod 'SwiftLint'
 pod ‘Nuke’
 
 

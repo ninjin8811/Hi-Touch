@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		669049336416252694F28A9C /* Pods_Hi_Touch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC16082C9764466BFC0A5C35 /* Pods_Hi_Touch.framework */; };
 		9A0B61632205939C006A395A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A0B61622205939C006A395A /* GoogleService-Info.plist */; };
 		9A5372FC2206E8BB00C98EC5 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5372FB2206E8BB00C98EC5 /* ProfileCell.xib */; };
 		9A5373002206F30B00C98EC5 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5372FF2206F30B00C98EC5 /* ProfileCell.swift */; };
@@ -36,10 +35,12 @@
 		9AB56381220580A700BAA0B2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB56380220580A700BAA0B2 /* LoginViewController.swift */; };
 		9AF145DF2213F625008DE2A1 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF145DE2213F625008DE2A1 /* Messages.swift */; };
 		9AF145E12213FCEE008DE2A1 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF145E02213FCEE008DE2A1 /* ChatUser.swift */; };
+		A540F4311DF776C7C5F7ECF5 /* Pods_Hi_Touch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 875B66EA5216A186E29CE1E3 /* Pods_Hi_Touch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2D02217ABFC872A0FBD96656 /* Pods-Hi-Touch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hi-Touch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hi-Touch/Pods-Hi-Touch.debug.xcconfig"; sourceTree = "<group>"; };
+		875B66EA5216A186E29CE1E3 /* Pods_Hi_Touch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hi_Touch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99DFE68133822A63EF73C19E /* Pods-Hi-Touch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hi-Touch.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hi-Touch/Pods-Hi-Touch.release.xcconfig"; sourceTree = "<group>"; };
 		9A0B61622205939C006A395A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A1A2B6B2214FEAE0046640C /* Hi_TouchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hi_TouchTests.swift; sourceTree = "<group>"; };
 		9A1A2B6D2214FEAE0046640C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,8 +73,7 @@
 		9AB56380220580A700BAA0B2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9AF145DE2213F625008DE2A1 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		9AF145E02213FCEE008DE2A1 /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
-		BC16082C9764466BFC0A5C35 /* Pods_Hi_Touch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hi_Touch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6AC3B7847E17CEC6DBD84B4 /* Pods-Hi-Touch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hi-Touch.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hi-Touch/Pods-Hi-Touch.release.xcconfig"; sourceTree = "<group>"; };
+		DBFD203A92E32A97954709A3 /* Pods-Hi-Touch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hi-Touch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hi-Touch/Pods-Hi-Touch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,28 +81,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				669049336416252694F28A9C /* Pods_Hi_Touch.framework in Frameworks */,
+				A540F4311DF776C7C5F7ECF5 /* Pods_Hi_Touch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		27FA740A304E9B605829D9B1 /* Pods */ = {
+		0AE3F6F276C34CF594466656 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2D02217ABFC872A0FBD96656 /* Pods-Hi-Touch.debug.xcconfig */,
-				D6AC3B7847E17CEC6DBD84B4 /* Pods-Hi-Touch.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		6ACE9346F11395EDD0C7E182 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BC16082C9764466BFC0A5C35 /* Pods_Hi_Touch.framework */,
+				875B66EA5216A186E29CE1E3 /* Pods_Hi_Touch.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		98975FB52C24119916ADEB37 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DBFD203A92E32A97954709A3 /* Pods-Hi-Touch.debug.xcconfig */,
+				99DFE68133822A63EF73C19E /* Pods-Hi-Touch.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		9A1A2B6A2214FEAE0046640C /* Hi-TouchTests */ = {
@@ -184,8 +184,8 @@
 				9A73D3BE2205685E00D4A918 /* Hi-Touch */,
 				9A1A2B6A2214FEAE0046640C /* Hi-TouchTests */,
 				9A73D3BD2205685E00D4A918 /* Products */,
-				27FA740A304E9B605829D9B1 /* Pods */,
-				6ACE9346F11395EDD0C7E182 /* Frameworks */,
+				98975FB52C24119916ADEB37 /* Pods */,
+				0AE3F6F276C34CF594466656 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,11 +232,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A73D3CE2205685E00D4A918 /* Build configuration list for PBXNativeTarget "Hi-Touch" */;
 			buildPhases = (
-				7B40B8551BFE7B71E3796901 /* [CP] Check Pods Manifest.lock */,
+				D961F05D5A2D5C9A28243A9A /* [CP] Check Pods Manifest.lock */,
 				9A73D3B82205685E00D4A918 /* Sources */,
 				9A73D3B92205685E00D4A918 /* Frameworks */,
 				9A73D3BA2205685E00D4A918 /* Resources */,
-				F81BEBEBBA23CD98359E9686 /* [CP] Embed Pods Frameworks */,
+				68BB2A1E4AD718CFECCAF1AF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -301,28 +301,12 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7B40B8551BFE7B71E3796901 /* [CP] Check Pods Manifest.lock */ = {
+		68BB2A1E4AD718CFECCAF1AF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Hi-Touch-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F81BEBEBBA23CD98359E9686 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Hi-Touch/Pods-Hi-Touch-frameworks.sh",
@@ -344,6 +328,8 @@
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
@@ -365,6 +351,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hi-Touch/Pods-Hi-Touch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D961F05D5A2D5C9A28243A9A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Hi-Touch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -534,7 +542,7 @@
 		};
 		9A73D3CF2205685E00D4A918 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D02217ABFC872A0FBD96656 /* Pods-Hi-Touch.debug.xcconfig */;
+			baseConfigurationReference = DBFD203A92E32A97954709A3 /* Pods-Hi-Touch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -551,7 +559,7 @@
 		};
 		9A73D3D02205685E00D4A918 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6AC3B7847E17CEC6DBD84B4 /* Pods-Hi-Touch.release.xcconfig */;
+			baseConfigurationReference = 99DFE68133822A63EF73C19E /* Pods-Hi-Touch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -132,8 +132,6 @@ PODS:
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
   - SVProgressHUD (2.2.5)
-  - SwiftFormat/CLI (0.40.7)
-  - SwiftLint (0.31.0)
 
 DEPENDENCIES:
   - AlamofireImage
@@ -147,8 +145,6 @@ DEPENDENCIES:
   - Nuke
   - RealmSwift
   - SVProgressHUD
-  - SwiftFormat/CLI
-  - SwiftLint
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -179,8 +175,6 @@ SPEC REPOS:
     - RealmSwift
     - SDWebImage
     - SVProgressHUD
-    - SwiftFormat
-    - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -210,9 +204,7 @@ SPEC CHECKSUMS:
   RealmSwift: a82eab9b04c3e1616082c7e17aa300740847769c
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftFormat: 93264523d31b70e5bc109c00ceeda3ae613a59d1
-  SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
-PODFILE CHECKSUM: 77483c7fc61f9d7c96b713842b3e9f28badcd726
+PODFILE CHECKSUM: 1e9d3e8472545545c35226c43c8134f211dc40a5
 
 COCOAPODS: 1.5.3
